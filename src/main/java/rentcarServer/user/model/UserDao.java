@@ -1,4 +1,4 @@
-package boardServer.user.model;
+package rentcarServer.user.model;
 
 public class UserDao {
 	

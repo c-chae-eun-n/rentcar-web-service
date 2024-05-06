@@ -1,4 +1,4 @@
-package boardServer.user.model;
+package rentcarServer.user.model;
 
 import java.sql.Timestamp;
 
