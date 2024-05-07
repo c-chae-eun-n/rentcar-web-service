@@ -1,6 +1,9 @@
 package rentcarServer.util;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -24,5 +27,30 @@ public class DBManager {
 		}
 		
 		return conn;
+	}
+	
+	public static void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+		try {
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+			System.out.println("[DB 연결 해제]");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("[DB 연결 해제 실패]");
+		}
+	}
+	
+	public static void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			pstmt.close();
+			conn.close();
+			
+			System.out.println("[DB 연결 해제]");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("[DB 연결 해제 실패]");
+		}
 	}
 }
