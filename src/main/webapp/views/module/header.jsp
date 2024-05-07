@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="https://em-content.zobj.net/source/microsoft-teams/363/automobile_1f697.png">
 <link rel="stylesheet" href="/resources/style/grid.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <title>씬씬카 Shin Shin car</title>
 </head>
 <body>
@@ -21,7 +23,7 @@
 		<nav id="nav-sub">
 			<ul>
 				<li><a href="about:blank"><span>로그인</span></a></li>
-				<li><a href="about:blank"><span>회원가입</span></a></li>
+				<li><a href="/join"><span>회원가입</span></a></li>
 			</ul>
 		</nav>
 	</header>
