@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+@import url("reset.css");
+
+body {
+	display: grid;
+	grid-template-rows: 120px auto 150px;
+	margin: auto;
+	max-width: 1440px;
+	min-height: 100vh;
+}
+
+header,
+section,
+footer {
+	padding: 20px 10px;
+}
+
+header {
+	display: grid;
+	grid-template-columns: 1fr 2fr 3fr;
+	grid-template-areas:
+	"logo nav-main nav-sub"
+	;
+}
+
+footer {
+	border-top: solid 1px lightgrey;
+	display: flex;
+	align-items : center;
+}
+
+footer > div > h2 {
+	color : #007aff;
+}
+
+#logo {
+	grid-area: logo;
+	display: flex;
+	justify-content: space-between;
+	align-items : center;
+}
+
+#logo a {
+	color: #007aff;
+    text-decoration: none;
+}
+
+#nav-main {
+	grid-area: nav-main;
+	display: flex;
+	align-items : center;
+}
+
+#nav-main > ul {
+	list-style:none;
+	display: flex;
+	flex-direction: rows;
+}
+
+#nav-sub {
+	grid-area: nav-sub;
+	display: flex;
+	justify-content: flex-end;
+	align-items : center;
+}
+
+#nav-sub > ul {
+	list-style:none;
+	display: flex;
+	flex-direction: rows;
+}
+
+#nav-main > ul > li {
+	margin-right : 30px;
+}
+
+#nav-sub > ul > li {
+	margin-right : 30px;
+}
+
+#nav-main a,
+#nav-sub a {
+    color: #666;
+    text-decoration: none;
+}
+	
