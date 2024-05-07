@@ -9,10 +9,9 @@ public class UserResponseDto {
 	private String country;
 	private String telecom;
 	private String phone;
-	private boolean agree;
 	
 	public UserResponseDto(String id, String email, String name, String birth, String gender, String country, String telecom,
-			String phone, boolean agree) {
+			String phone) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -22,7 +21,6 @@ public class UserResponseDto {
 		this.country = country;
 		this.telecom = telecom;
 		this.phone = phone;
-		this.agree = agree;
 	}
 	
 	public UserResponseDto(User user) {
@@ -34,7 +32,6 @@ public class UserResponseDto {
 		this.country = user.getCountry();
 		this.telecom = user.getTelecom();
 		this.phone = user.getPhone();
-		this.agree = user.isAgree();
 	}
 
 	public String getId() {
@@ -99,14 +96,6 @@ public class UserResponseDto {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public boolean isAgree() {
-		return agree;
-	}
-
-	public void setAgree(boolean agree) {
-		this.agree = agree;
 	}
 
 	@Override
