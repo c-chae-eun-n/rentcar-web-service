@@ -4,19 +4,18 @@
 
 body {
 	display: grid;
-	grid-template-rows: 120px auto 150px;
+	grid-template-rows: 80px auto 150px;
 	margin: auto;
 	max-width: 1440px;
-	min-height: 100vh;
+	min-height: 130vh;
 }
 
-header,
-section,
-footer {
-	padding: 20px 10px;
+section {
+	padding: 0px 10px;
 }
 
 header {
+	padding: 0px 10px;
 	display: grid;
 	grid-template-columns: 1fr 2fr 3fr;
 	grid-template-areas:
@@ -25,19 +24,26 @@ header {
 }
 
 footer {
+	padding: 20px 10px;
 	border-top: solid 1px lightgrey;
 	display: flex;
 	align-items : center;
+	min-height: 20vh;
 }
 
 footer > div > h2 {
 	color : #007aff;
+	margin: 0;
+}
+
+footer > div {
+	margin : 20px 35px;
 }
 
 #logo {
 	grid-area: logo;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items : center;
 }
 
@@ -85,3 +91,14 @@ footer > div > h2 {
     text-decoration: none;
 }
 	
+
+#root {
+	margin: auto;
+}
+
+#root > h1 {
+	color: #007aff;
+	margin-top : 0;
+	display: flex;
+	justify-content: center;
+}
