@@ -3,6 +3,7 @@ package rentcarServer.user.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 import rentcarServer.user.model.UserRequestDto;
 import rentcarServer.util.DBManager;
@@ -67,7 +68,46 @@ public class UserDao {
 		return null;
 	}
 	
+	private User findUserById(String id) {
+		User user = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "SELECT user_id, email, name, birth, gender, country, telecom, phone, reg_date, mod_date FROM users WHERE user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String email = rs.getString(2);
+				String name = rs.getString(3);
+				String birth = rs.getString(4);
+				String gender = rs.getString(5);
+				String country = rs.getString(6);
+				String telecom = rs.getString(7);
+				String phone = rs.getString(8);
+				Timestamp regDate = rs.getTimestamp(9);
+				Timestamp modDate = rs.getTimestamp(10);
+				
+				user = new User(id, email, name, birth, gender, country, telecom, phone, regDate, modDate);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return user;
+	}
+	
 	public boolean userExists(UserRequestDto userDto) {
 		return findUserByIdAndPassword(userDto.getId(), userDto.getPassword()) != null;
+	}
+	
+	public boolean userExists(String id) {
+		return findUserById(id) != null;
 	}
 }
