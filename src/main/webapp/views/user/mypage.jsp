@@ -13,10 +13,10 @@
 
 	<section id="root-mypage">
 		<h3>${user.name}님</h3>
-		<button id="updateUser" onclick="location.href='/updateUser'">회원정보 수정</button>
+		<button id="updateUser" onclick="location.href='/update'">회원정보 수정</button>
 		<div class="reservation-container">
 		</div>
-		<button id="deleteUser" onclick="location.href='/deleteUser'">회원 탈퇴</button>
+		<button id="deleteUser" onclick="location.href='/delete'">회원 탈퇴</button>
 	</section>
 </body>
 <c:import url="/footer" />
