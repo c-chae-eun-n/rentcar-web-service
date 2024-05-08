@@ -9,8 +9,7 @@ $(document).ready(() => {
 		}
 	});
 		
-	$('#password').on('change', e => {
-		console.log('change');
+	$('#password').focusout(e => {
 		if($('#password').val() === ""){
 			$('#error-msg-password').show();
 			$('#password').css('border', 'solid 1px #ff3f3f');
