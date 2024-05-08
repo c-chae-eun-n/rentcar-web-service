@@ -10,7 +10,6 @@ public class UserRequestDto {
 	private String country;
 	private String telecom;
 	private String phone;
-	private boolean agree;
 
 
 	public UserRequestDto() {
@@ -19,7 +18,7 @@ public class UserRequestDto {
 	
 	
 	public UserRequestDto(String id, String password, String name, String birth, String gender, String country,
-			String telecom, String phone, String agree) {
+			String telecom, String phone) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -29,10 +28,9 @@ public class UserRequestDto {
 		this.country = country;
 		this.telecom = telecom;
 		this.phone = phone;
-		this.agree = agree.equals("on") ? true : false;
 	}
 	public UserRequestDto(String id, String password, String email, String name, String birth, String gender,
-			String country, String telecom, String phone, String agree) {
+			String country, String telecom, String phone) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -43,7 +41,6 @@ public class UserRequestDto {
 		this.country = country;
 		this.telecom = telecom;
 		this.phone = phone;
-		this.agree = agree.equals("on") ? true : false;
 	}
 	public String getId() {
 		return id;
@@ -98,11 +95,5 @@ public class UserRequestDto {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-	public boolean isAgree() {
-		return agree;
-	}
-	public void setAgree(boolean agree) {
-		this.agree = agree;
 	}
 }
