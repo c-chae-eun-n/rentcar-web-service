@@ -29,6 +29,15 @@
   	<url-pattern>/search/user</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>loginFormAction</servlet-name>
+  	<servlet-class>rentcarServer.user.controller.LoginFormAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>loginFormAction</servlet-name>
+  	<url-pattern>/loginFormAction</url-pattern>
+  </servlet-mapping>
+  
 	<!-- JSP files mapping -->
 	<servlet>
 		<servlet-name>header</servlet-name>
@@ -55,6 +64,15 @@
   	<servlet-mapping>
   		<servlet-name>joinForm</servlet-name>
   		<url-pattern>/join</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+  		<servlet-name>loginForm</servlet-name>
+  		<jsp-file>/views/user/loginForm.jsp</jsp-file>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>loginForm</servlet-name>
+  		<url-pattern>/login</url-pattern>
   	</servlet-mapping>
   
 </web-app>
