@@ -38,6 +38,15 @@
   	<url-pattern>/loginFormAction</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>logoutAction</servlet-name>
+  	<servlet-class>rentcarServer.user.controller.LogoutAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>logoutAction</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
 	<!-- JSP files mapping -->
 	<servlet>
 		<servlet-name>header</servlet-name>
