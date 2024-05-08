@@ -83,5 +83,14 @@
   		<servlet-name>loginForm</servlet-name>
   		<url-pattern>/login</url-pattern>
   	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>myPage</servlet-name>
+		<jsp-file>/views/user/mypage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>myPage</servlet-name>
+		<url-pattern>/mypage</url-pattern>
+	</servlet-mapping>
   
 </web-app>
