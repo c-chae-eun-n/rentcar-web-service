@@ -9,7 +9,8 @@ $(document).ready(() => {
 		}
 	});
 		
-	$('#password').focusout(e => {
+	$('#password').on('change', e => {
+		console.log('change');
 		if($('#password').val() === ""){
 			$('#error-msg-password').show();
 			$('#password').css('border', 'solid 1px #ff3f3f');
@@ -19,7 +20,8 @@ $(document).ready(() => {
 		
 			const password = $('#password').val();
 			
-			if(password.match(/(?=.*[a-z])(?=.*[!@#$%])[a-z0-9!@#$%]{8,12}/) === null) {
+			
+			if(password.match(/(?=.*[a-z])(?=.*[!@#$%])[a-z0-9!@#$%]{8,12}/) === null || password.match(/(?=.*[a-z])(?=.*[!@#$%])[a-z0-9!@#$%]{8,12}/)[0] !== password) {
 				$('#error-msg-password-pattern').show();
 				$('#password').css('border', 'solid 1px #ff3f3f');
 			}else {
