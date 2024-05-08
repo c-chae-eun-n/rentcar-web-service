@@ -39,7 +39,7 @@
 				</select>
 				<div id="radio-container">
 					<input type="radio" class="gender" id="gender-man" name="gender" value="M">
-					<input type="radio" class="gender" id="gender-woman" name="gender" value="W">
+					<input type="radio" class="gender" id="gender-woman" name="gender" value="F">
 					<input type="radio" class="country" id="country-local" name="country" value="local">
 					<input type="radio" class="country" id="country-foreigner" name="country" value="foreigner">
 					<div>
