@@ -19,7 +19,7 @@
 			<ul>
 				<li><a href="about:blank"><span>렌트카</span></a></li>
 				<li><a href="about:blank"><span>게시판</span></a></li>
-				<li><a href="about:blank"><span>마이페이지</span></a></li>
+				<li><a href="/mypage"><span>마이페이지</span></a></li>
 			</ul>
 		</nav>
 		<nav id="nav-sub">
