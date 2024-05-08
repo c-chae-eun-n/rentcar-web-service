@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import rentcarServer.user.model.UserRequestDto;
 import rentcarServer.util.DBManager;
 import rentcarServer.util.PasswordCrypto;
 
@@ -236,5 +237,33 @@ public class UserDao {
 		}
 		
 		return user;
+	}
+	
+	
+	// 패스워드가 일치하지 않으면 false가 됨
+	public boolean deleteUser(UserRequestDto userDto) {
+		
+		if(findUserByIdAndPassword(userDto.getId(), userDto.getPassword()) == null) {
+			return false;
+		}
+		
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "DELETE FROM users WHERE user_id=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userDto.getId());
+			
+			pstmt.execute();
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return false;
 	}
 }
