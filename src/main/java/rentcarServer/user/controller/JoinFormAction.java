@@ -78,7 +78,7 @@ public class JoinFormAction extends HttpServlet {
 			if(user == null) {
 				response.sendRedirect("/join");
 			} else {
-				response.sendRedirect("/");
+				response.sendRedirect("/login");
 			}
 		}
 	}
