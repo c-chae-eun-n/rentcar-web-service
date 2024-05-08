@@ -42,7 +42,7 @@ public class UserDao {
 			pstmt.setString(1, userDto.getId());
 			pstmt.setString(2, PasswordCrypto.encrypt(userDto.getPassword()));
 			
-			String email = userDto.getEmail().equals("") ? null : userDto.getEmail();
+			String email = (userDto.getEmail() == null || userDto.getEmail().equals("")) ? null : userDto.getEmail();
 			pstmt.setString(3, email);
 			
 			pstmt.setString(4, userDto.getName());
