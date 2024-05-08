@@ -16,7 +16,7 @@
 		<button id="updateUser" onclick="location.href='/updateUser'">회원정보 수정</button>
 		<div class="reservation-container">
 		</div>
-		<button id="deleteUser" onclick="location.href='/deleteUserForm'">회원 탈퇴</button>
+		<button id="deleteUser" onclick="location.href='/deleteUser'">회원 탈퇴</button>
 	</section>
 </body>
 <c:import url="/footer" />
