@@ -54,6 +54,15 @@
 	<servlet-mapping>
 		<servlet-name>updateFormAction</servlet-name>
 		<url-pattern>/updateFormAction</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
+		<servlet-name>deleteUserAction</servlet-name>
+		<servlet-class>rentcarServer.user.controller.DeleteFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteUserAction</servlet-name>
+		<url-pattern>/deleteAction</url-pattern>
 	</servlet-mapping>
   
 	<!-- JSP files mapping -->
@@ -109,6 +118,15 @@
 	<servlet-mapping>
 		<servlet-name>updateForm</servlet-name>
 		<url-pattern>/update</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>deleteForm</servlet-name>
+		<jsp-file>/views/user/deleteForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteForm</servlet-name>
+		<url-pattern>/delete</url-pattern>
 	</servlet-mapping>
 
   
