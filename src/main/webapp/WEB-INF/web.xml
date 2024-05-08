@@ -46,6 +46,15 @@
   	<servlet-name>logoutAction</servlet-name>
   	<url-pattern>/logout</url-pattern>
   </servlet-mapping>
+	
+	<servlet>
+		<servlet-name>updateFormAction</servlet-name>
+		<servlet-class>rentcarServer.user.controller.UpdateFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateFormAction</servlet-name>
+		<url-pattern>/updateFormAction</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
@@ -92,5 +101,15 @@
 		<servlet-name>myPage</servlet-name>
 		<url-pattern>/mypage</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>updateForm</servlet-name>
+		<jsp-file>/views/user/updateForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateForm</servlet-name>
+		<url-pattern>/update</url-pattern>
+	</servlet-mapping>
+
   
 </web-app>
