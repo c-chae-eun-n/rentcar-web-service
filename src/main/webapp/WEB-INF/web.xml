@@ -129,5 +129,13 @@
 		<url-pattern>/delete</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>boardMainForm</servlet-name>
+		<jsp-file>/views/board/boardMainForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>boardMainForm</servlet-name>
+		<url-pattern>/board</url-pattern>
+	</servlet-mapping>
   
 </web-app>
