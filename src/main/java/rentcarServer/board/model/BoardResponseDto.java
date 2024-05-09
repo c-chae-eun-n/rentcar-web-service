@@ -30,6 +30,18 @@ public class BoardResponseDto {
 		this.write_date = write_date;
 		this.mod_date = mod_date;
 	}
+	
+	public BoardResponseDto(String code, String title, String content, String userId, String category,
+			Timestamp write_date, Timestamp mod_date) {
+		super();
+		this.code = code;
+		this.title = title;
+		this.content = content;
+		this.userId = userId;
+		this.category = category;
+		this.write_date = write_date;
+		this.mod_date = mod_date;
+	}
 
 	public BoardResponseDto(Board board) {
 		this.code = board.getCode();
