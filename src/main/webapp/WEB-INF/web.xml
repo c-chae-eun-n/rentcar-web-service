@@ -64,6 +64,15 @@
 		<servlet-name>deleteUserAction</servlet-name>
 		<url-pattern>/deleteAction</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>createFormAction</servlet-name>
+		<servlet-class>rentcarServer.board.controller.CreateFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createFormAction</servlet-name>
+		<url-pattern>/postFormAction</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
