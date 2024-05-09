@@ -137,5 +137,14 @@
 		<servlet-name>boardMainForm</servlet-name>
 		<url-pattern>/board</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>createPostForm</servlet-name>
+		<jsp-file>/views/board/createPostForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createPostForm</servlet-name>
+		<url-pattern>/post</url-pattern>
+	</servlet-mapping>
   
 </web-app>
