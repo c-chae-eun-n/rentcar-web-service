@@ -11,7 +11,7 @@
 		<h1>게시판</h1>
 
 		<c:if test="${not empty sessionScope.user}">
-			<button id="write" onclick="location.href='/'">글쓰기</button>
+			<button id="write" onclick="location.href='/post'">글쓰기</button>
 		</c:if>
 		
 		<div class="board-container">
