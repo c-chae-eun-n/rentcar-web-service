@@ -66,5 +66,64 @@ public class BoardDao {
 		return code;
 	}
 	
-
+	public BoardResponseDto createBoard(BoardRequestDto boardDto) {
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "INSERT INTO boards(code, title, content, user_id, category) VALUES(?, ?, ?, ?, ?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, boardDto.getCode());
+			pstmt.setString(2, boardDto.getTitle());
+			pstmt.setString(3, boardDto.getContent());
+			pstmt.setString(4, boardDto.getUserId());
+			pstmt.setString(5, boardDto.getCategory());
+			System.out.println("boardDto.getCode: " + boardDto.getCode());
+			pstmt.execute();
+			
+			return findBoardByCode(boardDto.getCode());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return null;
+	}
+	
+	public BoardResponseDto findBoardByCode(String code) {
+		BoardResponseDto board = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "SELECT code, title, content, user_id, category FROM boards WHERE code=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String checkCode = rs.getString(1);
+				String title = rs.getString(2);
+				String content = rs.getString(3);
+				String userId = rs.getString(4);
+				String category = rs.getString(5);
+				
+				if(code.equals(checkCode)) {
+					board = new BoardResponseDto(code, title, content, userId, category);
+					return board;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return null;
+	}
 }
