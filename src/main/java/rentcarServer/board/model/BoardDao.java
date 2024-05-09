@@ -3,6 +3,9 @@ package rentcarServer.board.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import rentcarServer.util.DBManager;
@@ -125,5 +128,36 @@ public class BoardDao {
 		}
 		
 		return null;
+	}
+	
+	public List<BoardResponseDto> readAllBoard() {
+		List<BoardResponseDto> boardList = new ArrayList<>();
+		
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT code, title, content, user_id, write_date, mod_date FROM boards ORDER BY CASE WHEN category = 'Admin' THEN 1 ELSE 2 END,  write_date ASC";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String code = rs.getString(1);
+				String title = rs.getString(2);
+				String content = rs.getString(3);
+				String user_id = rs.getString(4);
+				Timestamp write_date = rs.getTimestamp(5);
+				Timestamp mod_date = rs.getTimestamp(6);
+				
+				BoardResponseDto board = new BoardResponseDto(code, title, content, user_id, write_date, mod_date);
+				boardList.add(board);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return boardList;
 	}
 }
