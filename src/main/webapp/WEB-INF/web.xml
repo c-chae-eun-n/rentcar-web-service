@@ -73,6 +73,15 @@
 		<servlet-name>createFormAction</servlet-name>
 		<url-pattern>/postFormAction</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readAllFormAction</servlet-name>
+		<servlet-class>rentcarServer.board.controller.ReadAllFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readAllFormAction</servlet-name>
+		<url-pattern>/readAllFormAction</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
