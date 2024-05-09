@@ -27,7 +27,7 @@
 					<c:forEach var="board" items="${boardList}" varStatus="status">
 						<tr>
 							<td>${status.count}</td>
-							<td><a href="/">${board.title}</a></td>
+							<td><a href="/read/board?code=${board.code}">${board.title}</a></td>
 							<td>${board.userId}</td>
 							<td><fmt:formatDate value="${board.write_date}" pattern="yy-MM-dd HH:mm" /></td>
 						</tr>
