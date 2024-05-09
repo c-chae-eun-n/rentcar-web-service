@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -56,11 +58,15 @@ public class BoardDao {
 	public String createPostCode() {
 		String code = "";
 		while(true) {
+			LocalDate now = LocalDate.now();         
+			// 포맷 정의        
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");         
+			// 포맷 적용        
+			String formatedNow = now.format(formatter);
 			Random random = new Random();
 			
-			int rNum1 = random.nextInt(900000)+100000;
-			int rNum2 = random.nextInt(900000)+100000;
-			code = rNum1 + "-" + rNum2;
+			int rNum = random.nextInt(900000)+100000;
+			code = formatedNow + "-" + rNum;
 			System.out.println("createCode: "+code);
 			if(findPostCode(code))
 				break;
@@ -102,7 +108,7 @@ public class BoardDao {
 		try {
 			conn = DBManager.getConnection();
 			
-			String sql = "SELECT code, title, content, user_id, category FROM boards WHERE code=?";
+			String sql = "SELECT code, title, content, user_id, category, write_date, mod_date FROM boards WHERE code=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, code);
@@ -115,9 +121,11 @@ public class BoardDao {
 				String content = rs.getString(3);
 				String userId = rs.getString(4);
 				String category = rs.getString(5);
+				Timestamp write_date = rs.getTimestamp(6);
+				Timestamp mod_date = rs.getTimestamp(7);
 				
 				if(code.equals(checkCode)) {
-					board = new BoardResponseDto(code, title, content, userId, category);
+					board = new BoardResponseDto(code, title, content, userId, category, write_date, mod_date);
 					return board;
 				}
 			}
