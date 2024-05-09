@@ -16,7 +16,6 @@ import rentcarServer.user.model.UserResponseDto;
 /**
  * Servlet implementation class CreateFormAction
  */
-@WebServlet("/CreateFormAction")
 public class CreateFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -74,7 +73,7 @@ public class CreateFormAction extends HttpServlet {
 			if(board == null) {
 				response.sendRedirect("/post");
 			} else {
-				response.sendRedirect("/board");
+				response.sendRedirect("/readAllFormAction");
 			}
 		}
 	}
