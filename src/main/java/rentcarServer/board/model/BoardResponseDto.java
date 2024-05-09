@@ -64,4 +64,9 @@ public class BoardResponseDto {
 		this.category = category;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("%s/%s  %s", this.title, this.content, this.userId);
+	}
+	
 }
