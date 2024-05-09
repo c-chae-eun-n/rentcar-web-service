@@ -1,11 +1,15 @@
 package rentcarServer.board.model;
 
+import java.sql.Timestamp;
+
 public class BoardResponseDto {
 	private String code;
 	private String title;
 	private String content;
 	private String userId;
 	private String category;
+	private Timestamp write_date;
+	private Timestamp mod_date;
 	
 	public BoardResponseDto(String code, String title, String content, String userId, String category) {
 		super();
@@ -14,6 +18,17 @@ public class BoardResponseDto {
 		this.content = content;
 		this.userId = userId;
 		this.category = category;
+	}
+	
+	public BoardResponseDto(String code, String title, String content, String userId,
+			Timestamp write_date, Timestamp mod_date) {
+		super();
+		this.code = code;
+		this.title = title;
+		this.content = content;
+		this.userId = userId;
+		this.write_date = write_date;
+		this.mod_date = mod_date;
 	}
 
 	public BoardResponseDto(Board board) {
@@ -62,6 +77,22 @@ public class BoardResponseDto {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public Timestamp getWrite_date() {
+		return write_date;
+	}
+
+	public void setWrite_date(Timestamp write_date) {
+		this.write_date = write_date;
+	}
+
+	public Timestamp getMod_date() {
+		return mod_date;
+	}
+
+	public void setMod_date(Timestamp mod_date) {
+		this.mod_date = mod_date;
 	}
 	
 	@Override
