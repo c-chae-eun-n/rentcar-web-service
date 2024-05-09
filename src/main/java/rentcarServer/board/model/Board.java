@@ -22,5 +22,37 @@ public class Board {
 		this.writeDate = writeDate;
 		this.modDate = modDate;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public Timestamp getWriteDate() {
+		return writeDate;
+	}
+
+	public Timestamp getModDate() {
+		return modDate;
+	}
+
+	public void setModDate(Timestamp modDate) {
+		this.modDate = modDate;
+	}
 	
 }
