@@ -109,6 +109,15 @@
 		<servlet-name>deleteBoardFormAction</servlet-name>
 		<url-pattern>/deletePostAction</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readAllCarFormAction</servlet-name>
+		<servlet-class>rentcarServer.car.controller.ReadAllFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readAllCarFormAction</servlet-name>
+		<url-pattern>/readAllCarFormAction</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
