@@ -209,5 +209,14 @@
 		<servlet-name>updatePostForm</servlet-name>
 		<url-pattern>/updatePost</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>readCarForm</servlet-name>
+		<jsp-file>/views/car/readCarForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readCarForm</servlet-name>
+		<url-pattern>/car</url-pattern>
+	</servlet-mapping>
   
 </web-app>
