@@ -6,7 +6,7 @@
 </head>
 <jsp:include page="/header"></jsp:include>
 <body>
-	<h1>Shin Shin car</h1>
+	<h1>Welcome ShinShincar</h1>
 </body>
 <jsp:include page="/footer"></jsp:include>
 </html>
