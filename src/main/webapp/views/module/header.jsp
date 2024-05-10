@@ -17,7 +17,7 @@
 		<div id="logo"><a href="/">씬씬카</a></div>
 		<nav id="nav-main">
 			<ul>
-				<li><a href="about:blank"><span>렌트카</span></a></li>
+				<li><a href="/readAllCarFormAction"><span>렌트카</span></a></li>
 				<li><a href="/readAllFormAction"><span>게시판</span></a></li>
 				<li><a href="/mypage"><span>마이페이지</span></a></li>
 			</ul>
