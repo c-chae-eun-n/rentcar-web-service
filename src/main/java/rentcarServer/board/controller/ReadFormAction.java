@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import rentcarServer.board.model.BoardDao;
 import rentcarServer.board.model.BoardResponseDto;
@@ -35,6 +36,9 @@ public class ReadFormAction extends HttpServlet {
 		
 		BoardDao boardDao = BoardDao.getInstance();
 		BoardResponseDto board = boardDao.findBoardByCode(code);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("board", board);
 		
 		request.setAttribute("board", board);
 		
