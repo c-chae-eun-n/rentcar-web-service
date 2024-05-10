@@ -33,6 +33,7 @@
 		
 		<c:if test="${not empty user and user.id eq (board.userId or 'Admin')}">
 			<button id="update" onclick="location.href='/updatePost'">수정</button>
+			<button id="delete" onclick="location.href='/deletePostAction'">삭제</button>
 		</c:if>
 		
 	</section>
