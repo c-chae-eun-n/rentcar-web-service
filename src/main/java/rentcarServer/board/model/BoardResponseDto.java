@@ -91,19 +91,19 @@ public class BoardResponseDto {
 		this.category = category;
 	}
 
-	public Timestamp getWrite_date() {
+	public Timestamp getWriteDate() {
 		return writeDate;
 	}
 
-	public void setWrite_date(Timestamp writeDate) {
+	public void setWriteDate(Timestamp writeDate) {
 		this.writeDate = writeDate;
 	}
 
-	public Timestamp getMod_date() {
+	public Timestamp getModDate() {
 		return modDate;
 	}
 
-	public void setMod_date(Timestamp modDate) {
+	public void setModDate(Timestamp modDate) {
 		this.modDate = modDate;
 	}
 	
