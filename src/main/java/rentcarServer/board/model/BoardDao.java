@@ -242,4 +242,29 @@ public class BoardDao {
 			
 		return board;
 	}
+	
+	public boolean deletePost(BoardRequestDto boardDto) {
+		if(findBoardByCode(boardDto.getCode()) == null) {
+			return false;
+		}
+		
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "DELETE FROM boards WHERE code =?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, boardDto.getCode());
+			
+			pstmt.execute();
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return false;
+	}
 }
