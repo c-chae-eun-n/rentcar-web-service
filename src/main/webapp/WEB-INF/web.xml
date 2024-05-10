@@ -91,6 +91,15 @@
 		<servlet-name>readFormAction</servlet-name>
 		<url-pattern>/read/board</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>updateBoardFormAction</servlet-name>
+		<servlet-class>rentcarServer.board.controller.UpdateFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateBoardFormAction</servlet-name>
+		<url-pattern>/updatePostAction</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
@@ -181,6 +190,15 @@
 	<servlet-mapping>
 		<servlet-name>readPostForm</servlet-name>
 		<url-pattern>/readPost</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updatePostForm</servlet-name>
+		<jsp-file>/views/board/updatePostForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updatePostForm</servlet-name>
+		<url-pattern>/updatePost</url-pattern>
 	</servlet-mapping>
   
 </web-app>
