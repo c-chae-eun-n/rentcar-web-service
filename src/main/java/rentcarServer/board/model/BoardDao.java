@@ -188,11 +188,11 @@ public class BoardDao {
 				String code = rs.getString(1);
 				String title = rs.getString(2);
 				String content = rs.getString(3);
-				String user_id = rs.getString(4);
+				String userId = rs.getString(4);
 				Timestamp writeDate = rs.getTimestamp(5);
 				Timestamp modDate = rs.getTimestamp(6);
 				
-				BoardResponseDto board = new BoardResponseDto(code, title, content, user_id, writeDate, modDate);
+				BoardResponseDto board = new BoardResponseDto(code, title, content, userId, writeDate, modDate);
 				boardList.add(board);
 			}
 			
