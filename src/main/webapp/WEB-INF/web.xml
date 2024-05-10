@@ -118,6 +118,15 @@
 		<servlet-name>readAllCarFormAction</servlet-name>
 		<url-pattern>/readAllCarFormAction</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readCarFormAction</servlet-name>
+		<servlet-class>rentcarServer.car.controller.ReadFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readCarFormAction</servlet-name>
+		<url-pattern>/read/car</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
@@ -220,12 +229,21 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>carMainForm</servlet-name>
+		<jsp-file>/views/car/carMainForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>carMainForm</servlet-name>
+		<url-pattern>/car</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>readCarForm</servlet-name>
 		<jsp-file>/views/car/readCarForm.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>readCarForm</servlet-name>
-		<url-pattern>/car</url-pattern>
+		<url-pattern>/readCar</url-pattern>
 	</servlet-mapping>
   
 </web-app>
