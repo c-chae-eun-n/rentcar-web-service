@@ -138,6 +138,42 @@ public class BoardDao {
 		return null;
 	}
 	
+	public Board findPostByCode(String code) {
+		Board board = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "SELECT code, title, content, user_id, category, write_date, mod_date FROM boards WHERE code=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String checkCode = rs.getString(1);
+				String title = rs.getString(2);
+				String content = rs.getString(3);
+				String userId = rs.getString(4);
+				String category = rs.getString(5);
+				Timestamp write_date = rs.getTimestamp(6);
+				Timestamp mod_date = rs.getTimestamp(7);
+				
+				if(code.equals(checkCode)) {
+					board = new Board(code, title, content, userId, category, write_date, mod_date);
+					return board;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return null;
+	}
+	
 	public List<BoardResponseDto> readAllBoard() {
 		List<BoardResponseDto> boardList = new ArrayList<>();
 		
@@ -167,5 +203,43 @@ public class BoardDao {
 		}
 		
 		return boardList;
+	}
+	
+	public BoardResponseDto updatePostTitleAndContent(BoardRequestDto boardDto, String newTitle, String newContent) {
+		BoardResponseDto board = null;
+		
+		if(newTitle == null || newContent == null || newTitle.equals("") || newContent.equals("")) {
+			System.out.println("title, content null!!!");
+			return board;
+		}
+		
+		if(findBoardByCode(boardDto.getCode()) == null) {
+			System.out.println("board null!!!");
+			return board;
+		}
+		
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "UPDATE boards SET title=?, content=? WHERE code = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newTitle);
+			pstmt.setString(2, newContent);
+			pstmt.setString(3, boardDto.getCode());
+			
+			pstmt.execute();
+			
+			Board boardVo = findPostByCode(board.getCode());
+			board = new BoardResponseDto(boardVo);
+			
+			return board;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+			
+		return board;
 	}
 }
