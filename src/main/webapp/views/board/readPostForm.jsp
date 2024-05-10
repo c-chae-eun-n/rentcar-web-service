@@ -15,7 +15,7 @@
 					<span>${board.userId}</span>
 					<span><fmt:formatDate value="${board.writeDate}" pattern="yy-MM-dd HH:mm" /></span>
 					<c:if test="${board.writeDate != board.modDate}">
-						<span><fmt:formatDate value="${board.modDate}" pattern="yy-MM-dd HH:mm" /></span>
+						<span> (수정날짜)<fmt:formatDate value="${board.modDate}" pattern="yy-MM-dd HH:mm" /></span>
 					</c:if>
 					<tbody>
 						<tr>
