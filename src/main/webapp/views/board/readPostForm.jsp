@@ -8,7 +8,7 @@
 </head>
 <c:import url="/header" />
 <body>
-	<section id="root-boardMain">
+	<section id="root-board">
 		<div class="post-container">
 			<table class="post-table">
 				<c:if test="${not empty board }">
@@ -31,8 +31,8 @@
 			</table>
 		</div>
 		
-		<c:if test="${not empty user}">
-			<button id="update" onclick="location.href='/post'">수정</button>
+		<c:if test="${not empty user and user.id eq (board.userId or 'Admin')}">
+			<button id="update" onclick="location.href='/updatePost'">수정</button>
 		</c:if>
 		
 	</section>
