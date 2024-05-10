@@ -121,11 +121,11 @@ public class BoardDao {
 				String content = rs.getString(3);
 				String userId = rs.getString(4);
 				String category = rs.getString(5);
-				Timestamp write_date = rs.getTimestamp(6);
-				Timestamp mod_date = rs.getTimestamp(7);
+				Timestamp writeDate = rs.getTimestamp(6);
+				Timestamp modDate = rs.getTimestamp(7);
 				
 				if(code.equals(checkCode)) {
-					board = new BoardResponseDto(code, title, content, userId, category, write_date, mod_date);
+					board = new BoardResponseDto(code, title, content, userId, category, writeDate, modDate);
 					return board;
 				}
 			}
@@ -157,11 +157,11 @@ public class BoardDao {
 				String content = rs.getString(3);
 				String userId = rs.getString(4);
 				String category = rs.getString(5);
-				Timestamp write_date = rs.getTimestamp(6);
-				Timestamp mod_date = rs.getTimestamp(7);
+				Timestamp writeDate = rs.getTimestamp(6);
+				Timestamp modDate = rs.getTimestamp(7);
 				
 				if(code.equals(checkCode)) {
-					board = new Board(code, title, content, userId, category, write_date, mod_date);
+					board = new Board(code, title, content, userId, category, writeDate, modDate);
 					return board;
 				}
 			}
@@ -189,10 +189,10 @@ public class BoardDao {
 				String title = rs.getString(2);
 				String content = rs.getString(3);
 				String user_id = rs.getString(4);
-				Timestamp write_date = rs.getTimestamp(5);
-				Timestamp mod_date = rs.getTimestamp(6);
+				Timestamp writeDate = rs.getTimestamp(5);
+				Timestamp modDate = rs.getTimestamp(6);
 				
-				BoardResponseDto board = new BoardResponseDto(code, title, content, user_id, write_date, mod_date);
+				BoardResponseDto board = new BoardResponseDto(code, title, content, user_id, writeDate, modDate);
 				boardList.add(board);
 			}
 			

@@ -29,7 +29,7 @@
 							<td>${status.count}</td>
 							<td><a href="/read/board?code=${board.code}">${board.title}</a></td>
 							<td>${board.userId}</td>
-							<td><fmt:formatDate value="${board.write_date}" pattern="yy-MM-dd HH:mm" /></td>
+							<td><fmt:formatDate value="${board.writeDate}" pattern="yy-MM-dd HH:mm" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>

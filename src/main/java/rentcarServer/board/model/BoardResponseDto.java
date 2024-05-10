@@ -8,8 +8,8 @@ public class BoardResponseDto {
 	private String content;
 	private String userId;
 	private String category;
-	private Timestamp write_date;
-	private Timestamp mod_date;
+	private Timestamp writeDate;
+	private Timestamp modDate;
 	
 	public BoardResponseDto(String code, String title, String content, String userId, String category) {
 		super();
@@ -21,26 +21,26 @@ public class BoardResponseDto {
 	}
 	
 	public BoardResponseDto(String code, String title, String content, String userId,
-			Timestamp write_date, Timestamp mod_date) {
+			Timestamp writeDate, Timestamp modDate) {
 		super();
 		this.code = code;
 		this.title = title;
 		this.content = content;
 		this.userId = userId;
-		this.write_date = write_date;
-		this.mod_date = mod_date;
+		this.writeDate = writeDate;
+		this.modDate = modDate;
 	}
 	
 	public BoardResponseDto(String code, String title, String content, String userId, String category,
-			Timestamp write_date, Timestamp mod_date) {
+			Timestamp writeDate, Timestamp modDate) {
 		super();
 		this.code = code;
 		this.title = title;
 		this.content = content;
 		this.userId = userId;
 		this.category = category;
-		this.write_date = write_date;
-		this.mod_date = mod_date;
+		this.writeDate = writeDate;
+		this.modDate = modDate;
 	}
 
 	public BoardResponseDto(Board board) {
@@ -92,19 +92,19 @@ public class BoardResponseDto {
 	}
 
 	public Timestamp getWrite_date() {
-		return write_date;
+		return writeDate;
 	}
 
-	public void setWrite_date(Timestamp write_date) {
-		this.write_date = write_date;
+	public void setWrite_date(Timestamp writeDate) {
+		this.writeDate = writeDate;
 	}
 
 	public Timestamp getMod_date() {
-		return mod_date;
+		return modDate;
 	}
 
-	public void setMod_date(Timestamp mod_date) {
-		this.mod_date = mod_date;
+	public void setMod_date(Timestamp modDate) {
+		this.modDate = modDate;
 	}
 	
 	@Override

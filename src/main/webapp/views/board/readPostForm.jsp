@@ -13,9 +13,9 @@
 			<table class="post-table">
 				<c:if test="${not empty board }">
 					<span>${board.userId}</span>
-					<span><fmt:formatDate value="${board.write_date}" pattern="yy-MM-dd HH:mm" /></span>
-					<c:if test="${board.write_date != board.mod_date}">
-						<span><fmt:formatDate value="${board.mod_date}" pattern="yy-MM-dd HH:mm" /></span>
+					<span><fmt:formatDate value="${board.writeDate}" pattern="yy-MM-dd HH:mm" /></span>
+					<c:if test="${board.writeDate != board.modDate}">
+						<span><fmt:formatDate value="${board.modDate}" pattern="yy-MM-dd HH:mm" /></span>
 					</c:if>
 					<tbody>
 						<tr>
