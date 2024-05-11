@@ -245,5 +245,14 @@
 		<servlet-name>readCarForm</servlet-name>
 		<url-pattern>/readCar</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>reservationForm</servlet-name>
+		<jsp-file>/views/reservate/reservationForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reservationForm</servlet-name>
+		<url-pattern>/reservation</url-pattern>
+	</servlet-mapping>
   
 </web-app>
