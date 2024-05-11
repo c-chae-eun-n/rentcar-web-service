@@ -9,13 +9,15 @@ public class CarRequestDto {
 	private String carNumber;
 	private boolean reservation;
 	private String fuel;
+	private String location;
+	private String seater;
 	
 	public CarRequestDto() {
 		super();
 	}
 
 	public CarRequestDto(String carCode, String model, String price, String carClass, String carNumber,
-			boolean reservation, String fuel) {
+			boolean reservation, String fuel, String location, String seater) {
 		super();
 		this.carCode = carCode;
 		this.model = model;
@@ -24,6 +26,8 @@ public class CarRequestDto {
 		this.carNumber = carNumber;
 		this.reservation = reservation;
 		this.fuel = fuel;
+		this.location = location;
+		this.seater = seater;
 	}
 
 	public String getCarCode() {
@@ -80,6 +84,22 @@ public class CarRequestDto {
 
 	public void setFuel(String fuel) {
 		this.fuel = fuel;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getSeater() {
+		return seater;
+	}
+
+	public void setSeater(String seater) {
+		this.seater = seater;
 	}
 
 }

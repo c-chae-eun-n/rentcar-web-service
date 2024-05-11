@@ -16,6 +16,7 @@
 			<div>
 				<div>${car.price }</div>
 				<div>${car.fuel }</div>
+				<div>${car.seater }</div>
 			</div>
 			<button id="reservation" onclick="location.href='/reservation'">예약하기</button>
 		</div>

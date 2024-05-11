@@ -43,7 +43,7 @@
 					<input type="radio" class="car-class" id="s-midium" name="car-class" value="준중형">준중형
 					<input type="radio" class="car-class" id="midium" name="car-class" value="중형">중형
 					<input type="radio" class="car-class" id="big" name="car-class" value="대형">대형
-					<input type="radio" class="car-class" id="suv" name="car-class" value="suv">suv
+					<input type="radio" class="car-class" id="suv" name="car-class" value="suv">SUV
 					<input type="radio" class="car-class" id="income" name="car-class" value="수입">수입
 				</div>
 			</div>
@@ -71,8 +71,7 @@
 						</div>
 						<div>
 							<div>${car.price }</div>
-							<div>${car.price }</div>
-							<div>${car.price }</div>
+							<div>${car.seater }</div>
 						</div>
 					</a>
 				</div>
