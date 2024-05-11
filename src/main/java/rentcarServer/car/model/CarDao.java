@@ -29,7 +29,7 @@ public class CarDao {
 		
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT car_code, model, price, car_class, car_number, reservation, fuel FROM cars";
+			String sql = "SELECT car_code, model, price, car_class, car_number, reservation, fuel, location, seater FROM cars";
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -42,8 +42,10 @@ public class CarDao {
 				String carNumber = rs.getString(5);
 				boolean reservation = rs.getBoolean(6);
 				String fuel = rs.getString(7);
+				String location = rs.getString(8);
+				String seater = rs.getString(9);
 				
-				CarResponseDto board = new CarResponseDto(code, model, price, carClass, carNumber, reservation, fuel);
+				CarResponseDto board = new CarResponseDto(code, model, price, carClass, carNumber, reservation, fuel, location, seater);
 				carList.add(board);
 			}
 			
@@ -62,7 +64,7 @@ public class CarDao {
 		try {
 			conn = DBManager.getConnection();
 			
-			String sql = "SELECT car_code, model, price, car_class, car_number, reservation, fuel FROM cars WHERE car_code=?";
+			String sql = "SELECT car_code, model, price, car_class, car_number, reservation, fuel, location, seater FROM cars WHERE car_code=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, code);
@@ -77,9 +79,11 @@ public class CarDao {
 				String carNumber = rs.getString(5);
 				boolean reservation = rs.getBoolean(6);
 				String fuel = rs.getString(7);
+				String location = rs.getString(8);
+				String seater = rs.getString(9);
 				
 				if(carCode.equals(code)) {
-					car = new CarResponseDto(carCode, model, price, carClass, carNumber, reservation, fuel);
+					car = new CarResponseDto(code, model, price, carClass, carNumber, reservation, fuel, location, seater);
 					return car;
 				}
 			}
