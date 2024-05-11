@@ -10,7 +10,7 @@
 <script src="/resources/script/validation-join.js"></script>
 <script src="/resources/script/validation-id.js"></script>
 <body>
-		<section id="root">
+	<section id="root">
 		<h1>회원정보 수정</h1>
 		<c:if test="${empty user }">
 			<c:redirect url="/login"></c:redirect>
@@ -39,6 +39,7 @@
 					<option value="ktb" ${user.telecom eq 'ktb' ? 'selected' : ''}>KT 알뜰폰</option>
 					<option value="lgtb" ${user.telecom eq 'lgtb' ? 'selected' : ''}>LG U+ 알뜰폰</option>
 				</select>
+				<input type="text" id="phone" name="phone" placeholder="휴대전화번호" value= "${user.phone}">
 				<div id="radio-container">
 					<input type="radio" class="gender" id="gender-man" name="gender" value="M" ${user.gender eq 'M' ? 'checked' : ''} disabled>
 					<input type="radio" class="gender" id="gender-woman" name="gender" value="F" ${user.gender eq 'F' ? 'checked' : ''} disabled>
@@ -53,7 +54,6 @@
 						<label for="country-foreigner" id="country-foreigner-label"><div>외국인</div></label>
 					</div>
 				</div>
-				<input type="text" id="phone" name="phone" placeholder="휴대전화번호" value= "${user.phone}">
 			</div>
 			<div class="error-container">
 				<p class="error-msg" id="error-msg-telecom">* 통신사: 이용하는 통신사를 선택해 주세요.</p>

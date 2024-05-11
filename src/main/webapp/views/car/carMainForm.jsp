@@ -59,6 +59,7 @@
 			</div>
 			<div>
 				<p>가격</p>
+				<input type="range" min="50000" max="1000000" name="range">
 			</div>
 		</div>
 		<div class="carList-container">
