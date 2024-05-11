@@ -104,7 +104,10 @@ form > div > input:last-child {
 #gender-man:checked ~ div > #gender-man-label, 
 #gender-woman:checked ~ div > #gender-woman-label, 
 #country-local:checked ~ div > #country-local-label, 
-#country-foreigner:checked ~ div > #country-foreigner-label
+#country-foreigner:checked ~ div > #country-foreigner-label,
+#insurance-non:checked ~ div > #insurance-non-label, 
+#insurance-cover:checked ~ div > #insurance-cover-label, 
+#insurance-super:checked ~ div > #insurance-super-label
 {
 	color: #007aff;
 }
@@ -122,9 +125,9 @@ label:first-child > div {
 	border-right: none;
 }
 
-label:last-child > div {
-	border-radius: 0 6px 6px 0;
-}
+/* label:last-child > div { */
+/* 	border-radius: 0 6px 6px 0; */
+/* } */
 
 .error-container {
 	margin: 10px 0 0 0;
@@ -148,4 +151,9 @@ label:last-child > div {
 #agree-label > p > b {
 	color: #007aff;
 	font-weight: bold;
+}
+
+#radio-container {
+	border-radius: 0 0 6px 6px;
+	border-bottom: solid 1px lightgrey;
 }

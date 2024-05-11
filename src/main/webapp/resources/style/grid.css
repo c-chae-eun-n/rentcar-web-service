@@ -8,7 +8,7 @@ body {
 	grid-template-rows: 80px auto 150px;
 	margin: auto;
 	max-width: 1440px;
-	min-height: 130vh;
+	min-height: 150vh;
 }
 
 section {
@@ -31,8 +31,9 @@ footer {
 	border-top: solid 1px lightgrey;
 	display: flex;
 	align-items : center;
-	min-height: 20vh;
+	min-height: 25vh;
 }
+
 
 footer > div > h2 {
 	color : #007aff;
