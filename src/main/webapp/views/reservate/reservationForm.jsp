@@ -14,7 +14,7 @@
 		<c:redirect url="/login" />
 	</c:if>
 	<section id="root">
-		<form method="POST" action="/">
+		<form method="POST" action="/createReservation">
 			<div class="reserve-container">
 				<h1>실시간 예약</h1>
 				<div id="reservation-info">
@@ -29,7 +29,7 @@
 				<div id="insurance-info">
 					<h3>보험 선택</h3>
 					<div id="radio-container">
-						<input type="radio" class="insurance" id="insurance-non" name="insurance" value="일반자차">
+						<input type="radio" class="insurance" id="insurance-non" name="insurance" value="일반자차" checked>
 						<input type="radio" class="insurance" id="insurance-cover" name="insurance" value="완전자차">
 						<input type="radio" class=insurance id="insurance-super" name="insurance" value="슈퍼자차">
 						<div>
@@ -42,6 +42,8 @@
 				<div id="person-info">
 					<h3>예약자정보</h3>
 					<div>
+						<input type="hidden" id="id" name="id" value="${user.id }">
+						<input type="hidden" id="carCode" name="carCode" value="${car.carCode }">
 						예약자명<input type="text" id="name" name="name" value= "${user.name}">
 						이메일<input type="text" id="email" name="email" placeholder="[선택] 이메일주소 (예약 정보 전송 및 본인 확인용)" value= "${not empty user.email ? user.email : ''}">
 					</div>
