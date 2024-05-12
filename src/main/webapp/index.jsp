@@ -9,7 +9,7 @@
 	<h1>Welcome ShinShincar</h1>
 	
 	<div id="search-container">
-		<form action="/search/car">
+		<form action="/searchCar">
 	        <select id="location" name="location">
 	            <option selected value="all">지역</option>
 	            <option value="서울">서울</option>
