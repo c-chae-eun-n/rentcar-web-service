@@ -134,7 +134,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>readSearchFormAction</servlet-name>
-		<url-pattern>/search/car</url-pattern>
+		<url-pattern>/searchCar</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -143,7 +143,25 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>searchModelAction</servlet-name>
-		<url-pattern>/search/model</url-pattern>
+		<url-pattern>/searchModel</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>searchCarclassAction</servlet-name>
+		<servlet-class>rentcarServer.car.controller.SearchCarclassAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchCarclassAction</servlet-name>
+		<url-pattern>/searchCarClass</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>searchFuelAction</servlet-name>
+		<servlet-class>rentcarServer.car.controller.SearchFuelAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchFuelAction</servlet-name>
+		<url-pattern>/searchFuel</url-pattern>
 	</servlet-mapping>
   
 	<!-- JSP files mapping -->
