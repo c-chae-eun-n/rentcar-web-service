@@ -11,7 +11,7 @@
 <body>
 	<section id="root">
 		<div id="search-container">
-			<form action="/searchCar">
+			<form id="search-date" action="/searchCar">
 		        <select id="location" name="location">
 		            <option selected value="all">지역</option>
 		            <option value="서울">서울</option>
@@ -66,7 +66,7 @@
 			<div>
 				<p>자동차모델</p>
 				<div>
-					<form action="/searchModel">
+					<form id="search-carModel" action="/searchModel">
 						<div>
 							<input type="text" id="car-model" name="car-model">
 							<input type="submit" value="검색">
