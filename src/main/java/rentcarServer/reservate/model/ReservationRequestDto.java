@@ -1,11 +1,13 @@
 package rentcarServer.reservate.model;
 
+import java.sql.Timestamp;
+
 public class ReservationRequestDto {
 	private String number;
 	private String userId;
 	private String carCode;
-	private String renDate;
-	private String returnDate;
+	private Timestamp renDate;
+	private Timestamp returnDate;
 	private String insurance;
 	private boolean paymentStatus;
 	private String payment;
@@ -14,7 +16,7 @@ public class ReservationRequestDto {
 		super();
 	}
 
-	public ReservationRequestDto(String number, String userId, String carCode, String renDate, String returnDate,
+	public ReservationRequestDto(String number, String userId, String carCode, Timestamp renDate, Timestamp returnDate,
 			String insurance, boolean paymentStatus, String payment) {
 		super();
 		this.number = number;
@@ -51,19 +53,19 @@ public class ReservationRequestDto {
 		this.carCode = carCode;
 	}
 
-	public String getRenDate() {
+	public Timestamp getRenDate() {
 		return renDate;
 	}
 
-	public void setRenDate(String renDate) {
+	public void setRenDate(Timestamp renDate) {
 		this.renDate = renDate;
 	}
 
-	public String getReturnDate() {
+	public Timestamp getReturnDate() {
 		return returnDate;
 	}
 
-	public void setReturnDate(String returnDate) {
+	public void setReturnDate(Timestamp returnDate) {
 		this.returnDate = returnDate;
 	}
 
