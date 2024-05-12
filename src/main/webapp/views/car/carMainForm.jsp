@@ -4,34 +4,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/style/form.css">
 </head>
 <c:import url="/header" />
+<script src="/resources/script/validation-search.js"></script>
 <body>
 	<section id="root">
-		<div id="search-container">
-			<form>
-		        <input type="text" name="query" id="query">
-		        <select id="option" name="option">
-		            <option disabled selected value="">옵션</option>
-		            <option value="all">전체</option>
-		            <option value="smaller">경형</option>
-		            <option value="small">소형</option>
-		            <option value="s-midium">준중형</option>
-		            <option value="midium">중형</option>
-		            <option value="big">대형</option>
-		            <option value="suv">SUV</option>
-		            <option value="income">수입</option>
-		        </select>
-		        <input type="submit" value="검색">
-		    </form>
-		</div>
 		<div class="filter-container">
 			<div>
 				<p>자동차모델</p>
 				<div>
-					<form>
-						<input type="text" id="car-model" name="car-model">
-						<input type="submit" value="검색">
+					<form action="/search/model">
+						<div>
+							<input type="text" id="car-model" name="car-model">
+							<input type="submit" value="검색">
+						</div>
+						<div class="error-container">
+							<p class="error-msg" id="error-msg-search">검색어를 입력해주세요.</p>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -59,7 +49,7 @@
 			</div>
 			<div>
 				<p>가격</p>
-				<input type="range" min="50000" max="1000000" name="range">
+				<input type="range" min="0" max="500000" name="range">
 			</div>
 		</div>
 		<div class="carList-container">
