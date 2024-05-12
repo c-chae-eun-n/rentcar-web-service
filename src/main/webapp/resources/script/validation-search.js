@@ -2,9 +2,18 @@ $(document).ready(() => {
 	$('form').submit(e => {
 		e.preventDefault();
 		
+		const renDate = $('#ren-date').val();
+		const renTime = $('#ren-time').val();
+		const returnDate = $('#return-date').val();
+		const returnTime = $('#return-time').val();
 		const carModel = $('#car-model').val();
 		
 		let isValid = true;
+		
+		if(renDate === "" || returnDate === "" || renTime === "" || returnTime === "") {
+			isValid = false;
+			alert("대여 기간을 설정해주세요.");
+		}
 		
 		if(carModel === "") {
 			isValid = false;
