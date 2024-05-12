@@ -125,6 +125,78 @@ public class CarDao {
 		return carList;
 	}
 	
+	public List<CarResponseDto> searchCarByClass(String carClassTemp){
+		List<CarResponseDto> carList = new ArrayList<CarResponseDto>();
+		
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT * FROM cars WHERE car_class LIKE ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+carClassTemp+"%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String code = rs.getString(1);
+				String model = rs.getString(2);
+				String price = rs.getString(3);
+				String carClass = rs.getString(4);
+				String carNumber = rs.getString(5);
+				boolean reservation = rs.getBoolean(6);
+				String fuel = rs.getString(7);
+				String location = rs.getString(8);
+				String seater = rs.getString(9);
+				
+				CarResponseDto car = new CarResponseDto(code, model, price, carClass, carNumber, reservation, fuel, location, seater);
+				carList.add(car);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return carList;
+	}
+	
+	public List<CarResponseDto> searchCarByFuel(String carFuel){
+		List<CarResponseDto> carList = new ArrayList<CarResponseDto>();
+		
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT * FROM cars WHERE fuel LIKE ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+carFuel+"%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String code = rs.getString(1);
+				String model = rs.getString(2);
+				String price = rs.getString(3);
+				String carClass = rs.getString(4);
+				String carNumber = rs.getString(5);
+				boolean reservation = rs.getBoolean(6);
+				String fuel = rs.getString(7);
+				String location = rs.getString(8);
+				String seater = rs.getString(9);
+				
+				CarResponseDto car = new CarResponseDto(code, model, price, carClass, carNumber, reservation, fuel, location, seater);
+				carList.add(car);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return carList;
+	}
+	
 	public CarResponseDto findCarByCode(String code) {
 		CarResponseDto car = null;
 		
