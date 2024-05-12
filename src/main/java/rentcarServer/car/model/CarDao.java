@@ -234,4 +234,22 @@ public class CarDao {
 		
 		return car;
 	}
+	
+	public void changeCarReservation(String carCode) {
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "UPDATE cars SET reservation=true WHERE car_code=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, carCode);
+			
+			pstmt.execute();
+			System.out.println("car " + carCode + " reservation false -> true");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+	}
 }
