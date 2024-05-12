@@ -6,6 +6,7 @@
 <head>
 </head>
 <c:import url="/header" />
+<script src="/resources/script/validation-date.js"></script>
 <body>
 	<section id="root">
 		<div>
