@@ -23,7 +23,7 @@
 						<span>차량/상품명 </span>
 						<span> ${car.model }</span><br>
 						<span>대여 기간 </span>
-						<span> ${renDate } ~ ${returnDate }</span>
+						<span> ${renDate }(${renTime}) ~ ${returnDate }(${returnTime})</span>
 					</div>
 				</div>
 				<div id="insurance-info">
