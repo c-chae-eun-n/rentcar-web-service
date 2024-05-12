@@ -23,7 +23,7 @@
 						<span>차량/상품명 </span>
 						<span> ${car.model }</span><br>
 						<span>대여 기간 </span>
-						<span> ${reserve.renDate } ~ ${reserve.returnDate }</span>
+						<span> ${renDate } ~ ${returnDate }</span>
 					</div>
 				</div>
 				<div id="insurance-info">
@@ -182,8 +182,8 @@
 			<div id="reserve-payment">
 				<h3>결제 수단</h3>
 				<div>
-					<input type="radio" id="payment-card" name="payment"> 신용카드
-					<input type="radio" id="payment-cash" name="payment"> 무통장입금
+					<input type="radio" id="payment-card" name="payment" value="신용카드"> 신용카드
+					<input type="radio" id="payment-cash" name="payment" value="무통장입금"> 무통장입금
 				</div>
 			</div>
 			
