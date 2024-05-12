@@ -1,12 +1,11 @@
 $(document).ready(() => {
-	$('form').submit(e => {
+	$('#search-date').submit(e => {
 		e.preventDefault();
 		
 		const renDate = $('#ren-date').val();
 		const renTime = $('#ren-time').val();
 		const returnDate = $('#return-date').val();
 		const returnTime = $('#return-time').val();
-		const carModel = $('#car-model').val();
 		
 		let isValid = true;
 		
@@ -15,6 +14,17 @@ $(document).ready(() => {
 			alert("대여 기간을 설정해주세요.");
 		}
 		
+		if(isValid) {
+			e.target.submit();
+		}
+	});
+	
+	$('#search-carModel').submit(e => {
+		e.preventDefault();
+		
+		const carModel = $('#car-model').val();
+		
+		let isValid = true;
 		if(carModel === "") {
 			isValid = false;
 			$('#error-msg-search').show();
