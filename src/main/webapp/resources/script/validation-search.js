@@ -19,4 +19,20 @@ $(document).ready(() => {
 			e.target.submit();
 		}
 	});
+	
+	$('input[type=radio][name=car-class]').change(function() {
+		
+		const carClass = $('input:radio[name=car-class]:checked').val();
+		console.log(carClass);
+		
+		location.href = `/searchCarClass?car-class=${carClass}`;
+	});
+	
+	$('input[type=radio][name=fuel]').change(function() {
+		
+		const fuel = $('input:radio[name=fuel]:checked').val();
+		console.log(fuel);
+		
+		location.href = `/searchFuel?fuel=${fuel}`;
+	});
 });
