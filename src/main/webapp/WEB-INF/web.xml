@@ -127,6 +127,24 @@
 		<servlet-name>readCarFormAction</servlet-name>
 		<url-pattern>/read/car</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readSearchFormAction</servlet-name>
+		<servlet-class>rentcarServer.car.controller.ReadSearchFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readSearchFormAction</servlet-name>
+		<url-pattern>/search/car</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>searchModelAction</servlet-name>
+		<servlet-class>rentcarServer.car.controller.SearchModelAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchModelAction</servlet-name>
+		<url-pattern>/search/model</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
