@@ -14,7 +14,7 @@
 			<div>
 				<p>자동차모델</p>
 				<div>
-					<form action="/search/model">
+					<form action="/searchModel">
 						<div>
 							<input type="text" id="car-model" name="car-model">
 							<input type="submit" value="검색">
@@ -53,6 +53,9 @@
 			</div>
 		</div>
 		<div class="carList-container">
+			<c:if test="${empty carList }">
+				<span>검색 결과가 존재하지 않습니다.</span>
+			</c:if>
 			<c:forEach var="car" items="${carList }">
 				<div id="car-container">
 					<a href="/read/car?code=${car.carCode }">
