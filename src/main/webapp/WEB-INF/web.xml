@@ -172,6 +172,24 @@
 		<servlet-name>createReservationFormAction</servlet-name>
 		<url-pattern>/createReservation</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readReservationFormAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.ReadReservationFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readReservationFormAction</servlet-name>
+		<url-pattern>/readReservationAction</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>searchReservationFormAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.SearchReservationFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchReservationFormAction</servlet-name>
+		<url-pattern>/search/Reservation</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
@@ -307,6 +325,15 @@
 	<servlet-mapping>
 		<servlet-name>reservationCheck</servlet-name>
 		<url-pattern>/reservationCheck</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>viewUserReservation</servlet-name>
+		<jsp-file>/views/reservate/viewUserReservationForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viewUserReservation</servlet-name>
+		<url-pattern>/readReservaion</url-pattern>
 	</servlet-mapping>
   
 </web-app>
