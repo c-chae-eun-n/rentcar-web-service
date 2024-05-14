@@ -7,14 +7,13 @@
 <!-- <link rel="stylesheet" href="/resources/style/form.css"> -->
 </head>
 <c:import url="/header" />
-<script src="/resources/script/validation-join.js"></script>
-<script src="/resources/script/validation-id.js"></script>
+<script src="/resources/script/validation-confirmed.js"></script>
 <body>
 	<c:if test="${empty sessionScope.user}">
 		<c:redirect url="/login" />
 	</c:if>
 	<section id="root">
-		<form method="POST" action="/createReservation">
+		<form method="POST" action="/createReservation" id="create-reserve">
 			<div class="reserve-container">
 				<h1>실시간 예약</h1>
 				<div id="reservation-info">
@@ -23,7 +22,54 @@
 						<span>차량/상품명 </span>
 						<span> ${car.model }</span><br>
 						<span>대여 기간 </span>
-						<span> ${renDate }(${renTime}) ~ ${returnDate }(${returnTime})</span>
+						지역 <select id="location" name="location">
+				            <option disabled value="all">지역</option>
+				            <option value="서울" ${car.location eq '서울' ? 'selected' : '' }>서울</option>
+				            <option value="경기" ${car.location eq '경기' ? 'selected' : '' }>경기</option>
+				            <option value="부산" ${car.location eq '부산' ? 'selected' : '' }>부산</option>
+				            <option value="제주" ${car.location eq '제주' ? 'selected' : '' }>제주</option>
+				        </select>
+				        <span>대여일</span><input type="date" name="renDate" id="renDate" value="${renDate }"> 
+						<select name="renTime" id="renTime">
+							<option disabled selected>대여시간</option>
+							<option value="07:00:00" ${renTime eq '07:00:00' ? 'selected':''}>07:00</option>
+							<option value="08:00:00" ${renTime eq '08:00:00' ? 'selected':''}>08:00</option>
+							<option value="09:00:00" ${renTime eq '09:00:00' ? 'selected':''}>09:00</option>
+							<option value="10:00:00" ${renTime eq '10:00:00' ? 'selected':''}>10:00</option>
+							<option value="11:00:00" ${renTime eq '11:00:00' ? 'selected':''}>11:00</option>
+							<option value="12:00:00" ${renTime eq '12:00:00' ? 'selected':''}>12:00</option>
+							<option value="13:00:00" ${renTime eq '13:00:00' ? 'selected':''}>13:00</option>
+							<option value="14:00:00" ${renTime eq '14:00:00' ? 'selected':''}>14:00</option>
+							<option value="15:00:00" ${renTime eq '15:00:00' ? 'selected':''}>15:00</option>
+							<option value="16:00:00" ${renTime eq '16:00:00' ? 'selected':''}>16:00</option>
+							<option value="17:00:00" ${renTime eq '17:00:00' ? 'selected':''}>17:00</option>
+							<option value="18:00:00" ${renTime eq '18:00:00' ? 'selected':''}>18:00</option>
+							<option value="19:00:00" ${renTime eq '19:00:00' ? 'selected':''}>19:00</option>
+							<option value="20:00:00" ${renTime eq '20:00:00' ? 'selected':''}>20:00</option>
+							<option value="21:00:00" ${renTime eq '21:00:00' ? 'selected':''}>21:00</option>
+							<option value="22:00:00" ${renTime eq '22:00:00' ? 'selected':''}>22:00</option>
+						</select> 
+						<span>반납일</span><input type="date" name="returnDate" id="returnDate" value="${returnDate }"> 
+						<select name="returnTime" id="returnTime">
+							<option disabled selected>반납시간</option>
+							<option value="07:00:00" ${returnTime eq '07:00:00' ? 'selected':''}>07:00</option>
+							<option value="08:00:00" ${returnTime eq '08:00:00' ? 'selected':''}>08:00</option>
+							<option value="09:00:00" ${returnTime eq '09:00:00' ? 'selected':''}>09:00</option>
+							<option value="10:00:00" ${returnTime eq '10:00:00' ? 'selected':''}>10:00</option>
+							<option value="11:00:00" ${returnTime eq '11:00:00' ? 'selected':''}>11:00</option>
+							<option value="12:00:00" ${returnTime eq '12:00:00' ? 'selected':''}>12:00</option>
+							<option value="13:00:00" ${returnTime eq '13:00:00' ? 'selected':''}>13:00</option>
+							<option value="14:00:00" ${returnTime eq '14:00:00' ? 'selected':''}>14:00</option>
+							<option value="15:00:00" ${returnTime eq '15:00:00' ? 'selected':''}>15:00</option>
+							<option value="16:00:00" ${returnTime eq '16:00:00' ? 'selected':''}>16:00</option>
+							<option value="17:00:00" ${returnTime eq '17:00:00' ? 'selected':''}>17:00</option>
+							<option value="18:00:00" ${returnTime eq '18:00:00' ? 'selected':''}>18:00</option>
+							<option value="19:00:00" ${returnTime eq '19:00:00' ? 'selected':''}>19:00</option>
+							<option value="20:00:00" ${returnTime eq '20:00:00' ? 'selected':''}>20:00</option>
+							<option value="21:00:00" ${returnTime eq '21:00:00' ? 'selected':''}>21:00</option>
+							<option value="22:00:00" ${returnTime eq '22:00:00' ? 'selected':''}>22:00</option>
+						</select>
+						<input type="button" value="확정" id="reservation-confirmed">
 					</div>
 				</div>
 				<div id="insurance-info">
@@ -38,16 +84,22 @@
 							<label for="insurance-super" id="insurance-super-label"><div>슈퍼자차</div></label>
 						</div>
 					</div>
+					<div class="error-container">
+						<p class="error-msg" id="error-msg-insurance">보험: 필수 정보입니다.</p>
+					</div>
 				</div>
 				<div id="person-info">
 					<h3>예약자정보</h3>
 					<div>
 						<input type="hidden" id="id" name="id" value="${user.id }">
 						<input type="hidden" id="carCode" name="carCode" value="${car.carCode }">
+						<input type="hidden" id="location" name="location" value="${car.location }">
+						<input type="hidden" id="carModel" name="carModel" value="${car.model }">
 						예약자명<input type="text" id="name" name="name" value= "${user.name}">
 						이메일<input type="text" id="email" name="email" placeholder="[선택] 이메일주소 (예약 정보 전송 및 본인 확인용)" value= "${not empty user.email ? user.email : ''}">
 					</div>
 					<div class="error-container">
+						<p class="error-msg" id="error-msg-name">이름: 필수 정보입니다.</p>
 						<p class="error-msg" id="error-msg-email">* 이메일: 이메일 주소가 정확한지 확인해 주세요.</p>
 					</div>
 					<div>
@@ -78,6 +130,8 @@
 						</div>
 					</div>
 					<div class="error-container">
+						<p class="error-msg" id="error-msg-birth">생년월일: 필수 정보입니다.</p>
+						<p class="error-msg" id="error-msg-birth-pattern">생년월일은 8자리 숫자로 입력해 주세요.</p>
 						<p class="error-msg" id="error-msg-telecom">* 통신사: 이용하는 통신사를 선택해 주세요.</p>
 						<p class="error-msg" id="error-msg-phone">* 휴대전화번호: 필수 정보입니다.</p>
 						<p class="error-msg" id="error-msg-phone-pattern">* 휴대전화번호: 휴대전화번호가 정확한지 확인해 주세요.</p>
@@ -178,6 +232,7 @@
 			<div id="reserve-price">
 				<h3>최종 결제 금액</h3>
 				<div>
+					<input type="hidden" id="price" name="price" value="${car.price }">
 					<span> ${car.price }원</span><br>
 				</div>
 			</div>
