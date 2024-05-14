@@ -42,25 +42,36 @@ public class CreateReservationFormAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		HttpSession session = request.getSession();
 
-		Object renDate = session.getAttribute("renDate");
-		Object returnDate = session.getAttribute("returnDate");
-		Object renTime = session.getAttribute("renTime");
-		Object returnTime = session.getAttribute("returnTime");
+		Object renDate = request.getParameter("renDate");
+		Object returnDate = request.getParameter("returnDate");
+		Object renTime = request.getParameter("renTime");
+		Object returnTime = request.getParameter("returnTime");
 		
-		String resevtemp = renDate + " " + renTime;
+		System.out.println("renDate: "+renDate);
+		System.out.println("returnDate: "+returnDate);
+		System.out.println("renTime: "+renTime);
+		System.out.println("returnTime: "+returnTime);
+		
+		String rentemp = renDate + " " + renTime;
 		String returntemp = returnDate + " " + returnTime;
-
+		System.out.println("resevtemp: "+rentemp);
+		System.out.println("returntemp: "+returntemp);
 		
 		String userId = request.getParameter("id");
 		String carCode = request.getParameter("carCode");
-		Timestamp resevDateTime = Timestamp.valueOf(resevtemp);
+		System.out.println("userId: "+userId);
+		System.out.println("carCode: "+carCode);
+		Timestamp resevDateTime = Timestamp.valueOf(rentemp);	//
 		Timestamp returnDateTime = Timestamp.valueOf(returntemp);
 		String insurance = request.getParameter("insurance");
 		boolean paymentStatus = request.getParameter("payment").equals("신용카드") ? true : false;
 		String payment = request.getParameter("payment");
+		String location = request.getParameter("location");
+		String carModel = request.getParameter("carModel");
+		String priceTemp = request.getParameter("price");
+		int price = Integer.parseInt(priceTemp);
+		
 
 		boolean isValid = true;
 		
@@ -76,12 +87,16 @@ public class CreateReservationFormAction extends HttpServlet {
 			isValid = false;
 		else if(payment == null || payment.equals(""))
 			isValid = false;
+		else if(location == null || location.equals(""))
+			isValid = false;
+		else if(carModel == null || carModel.equals(""))
+			isValid = false;
 		
 		if(isValid) {
 			ReservationDao reservationDao = ReservationDao.getInstance();
 			
 			String number = reservationDao.createNumber();
-			ReservationRequestDto reservationDto = new ReservationRequestDto(number, userId, carCode, resevDateTime, returnDateTime, insurance, paymentStatus, payment);
+			ReservationRequestDto reservationDto = new ReservationRequestDto(number, userId, carCode, resevDateTime, returnDateTime, insurance, paymentStatus, payment, location, carModel, price);
 
 			ReservationResponseDto reservation = reservationDao.createReservation(reservationDto);
 			CarDao carDao = CarDao.getInstance();
