@@ -110,30 +110,30 @@
 			</c:if>
 			<c:forEach var="car" items="${carList }">
 				<div id="car-container">
-					<c:choose>
-						<c:when test="${car.reservation }">
-							<div>
-								<div id="car-image"><img src="https://d1masd123hbmlx.cloudfront.net/20211025062033_753_CARMST/20211025062033_753_CARMST_804.png" width="250" height="110"></div>
-								<div>${car.model}(${car.carClass}) 예약불가</div>
-							</div>
-							<div>
-								<div>${car.price }</div>
-								<div>${car.seater }</div>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<a href="/read/car?code=${car.carCode }">
-								<div>
-									<div id="car-image"><img src="https://d1masd123hbmlx.cloudfront.net/20211025062033_753_CARMST/20211025062033_753_CARMST_804.png" width="250" height="110"></div>
-									<div>${car.model}(${car.carClass})</div>
-								</div>
-								<div>
-									<div>${car.price }</div>
-									<div>${car.seater }</div>
-								</div>
-							</a>
-						</c:otherwise>
-					</c:choose>
+<%-- 					<c:choose> --%>
+<%-- <%-- 						<c:when test="${car.reservation }"> --%> --%>
+<!-- <!-- 							<div> --> -->
+<!-- <!-- 								<div id="car-image"><img src="https://d1masd123hbmlx.cloudfront.net/20211025062033_753_CARMST/20211025062033_753_CARMST_804.png" width="250" height="110"></div> --> -->
+<%-- <%-- 								<div>${car.model}(${car.carClass}) 예약불가</div> --%> --%>
+<!-- <!-- 							</div> --> -->
+<!-- <!-- 							<div> --> -->
+<%-- <%-- 								<div>${car.price }</div> --%> --%>
+<%-- <%-- 								<div>${car.seater }</div> --%> --%>
+<!-- <!-- 							</div> --> -->
+<%-- <%-- 						</c:when> --%> --%>
+<%-- 						<c:otherwise> --%>
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
+					<a href="/read/car?code=${car.carCode }">
+						<div>
+							<div id="car-image"><img src="https://d1masd123hbmlx.cloudfront.net/20211025062033_753_CARMST/20211025062033_753_CARMST_804.png" width="250" height="110"></div>
+							<div>${car.model}(${car.carClass})</div>
+						</div>
+						<div>
+							<div>${car.price }</div>
+							<div>${car.seater }</div>
+						</div>
+					</a>
 				</div>
 			</c:forEach>
 		</div>
