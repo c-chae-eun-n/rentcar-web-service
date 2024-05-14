@@ -59,7 +59,10 @@ public class ReservationDao {
 				String insurance = rs.getString(6);
 				boolean paymentStatus = rs.getBoolean(7);
 				String payment = rs.getString(8);
-				ReservationResponseDto reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment);
+				String location = rs.getString(9);
+				int price = rs.getInt(10);
+				String carModel = rs.getString(11);
+				ReservationResponseDto reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
 				reservationList.add(reservation);
 			}
 		} catch (Exception e) {
@@ -74,7 +77,7 @@ public class ReservationDao {
 		try {
 			conn = DBManager.getConnection();
 			
-			String sql = "INSERT INTO reservations(number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO reservations(number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 			pstmt = conn.prepareStatement(sql);
 			
@@ -86,6 +89,9 @@ public class ReservationDao {
 			pstmt.setString(6, reservationDto.getInsurance());
 			pstmt.setBoolean(7, reservationDto.isPaymentStatus());
 			pstmt.setString(8, reservationDto.getPayment());
+			pstmt.setString(9, reservationDto.getLocation());
+			pstmt.setString(10, reservationDto.getCarModel());
+			pstmt.setInt(11, reservationDto.getPrice());
 			
 			pstmt.execute();
 			
@@ -120,8 +126,11 @@ public class ReservationDao {
 				String insurance = rs.getString(6);
 				boolean paymentStatus = rs.getBoolean(7);
 				String payment = rs.getString(8);
+				String location = rs.getString(9);
+				int price = rs.getInt(10);
+				String carModel = rs.getString(11);
 				
-				reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment);
+				reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
 				return reservation;
 			}
 		} catch (Exception e) {
@@ -178,5 +187,88 @@ public class ReservationDao {
 		}
 		
 		return number;
+	}
+	
+	public List<ReservationResponseDto> readReservationList(String id) {
+		List<ReservationResponseDto> reservationList = new ArrayList<ReservationResponseDto>();
+
+		try {
+			conn = DBManager.getConnection();
+			
+			// 예약 불가 차량
+			String sql = "SELECT number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price FROM reservations WHERE user_id=?;";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String number = rs.getString(1);
+				String userId = rs.getString(2);
+				String carCode = rs.getString(3);
+				Timestamp renDate = rs.getTimestamp(4);
+				Timestamp returnDate = rs.getTimestamp(5);
+				String insurance = rs.getString(6);
+				boolean paymentStatus = rs.getBoolean(7);
+				String payment = rs.getString(8);
+				String location = rs.getString(9);
+				String carModel = rs.getString(10);
+				int price = rs.getInt(11);
+				ReservationResponseDto reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
+				reservationList.add(reservation);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return reservationList;
+	}
+	
+	public boolean reserveExists(String carCode, Timestamp renDateTime, Timestamp returnDateTime) {
+		return findReserveByCarcode(carCode, renDateTime, returnDateTime) != null;
+	}
+	
+	private Reservation findReserveByCarcode(String carCode, Timestamp renDateTime, Timestamp returnDateTime) {
+		Reservation reserve = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "SELECT * FROM reservations WHERE car_code=? AND ((ren_date<=? AND return_date>=?) OR (ren_date BETWEEN ? AND ?) OR (return_date BETWEEN ? AND ?))";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, carCode);
+			pstmt.setTimestamp(2, renDateTime);
+			pstmt.setTimestamp(3, returnDateTime);
+			pstmt.setTimestamp(4, renDateTime);
+			pstmt.setTimestamp(5, returnDateTime);
+			pstmt.setTimestamp(6, renDateTime);
+			pstmt.setTimestamp(7, returnDateTime);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String number = rs.getString(1);
+				String id = rs.getString(2);
+				String code = rs.getString(3);
+				Timestamp renDate = rs.getTimestamp(4);
+				Timestamp returnDate = rs.getTimestamp(5);
+				String insurance = rs.getString(6);
+				boolean paymentStatus = rs.getBoolean(7);
+				String payment = rs.getString(8);
+				String location = rs.getString(9);
+				int price = rs.getInt(10);
+				String carModel = rs.getString(11);
+				
+				reserve = new Reservation(number, id, code, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return reserve;
 	}
 }
