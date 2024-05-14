@@ -30,7 +30,7 @@ $(document).ready(() => {
 	});
 	
 	$('#email').focusout(e => {
-		if($('#email').val() !== "" && !$('#email').val().match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/)){
+		if($('#email').val() !== "" && !$('#email').val().match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/)){
 			isValid = false;
 			$('#error-msg-email').show();
 			$('#email').css('border', 'solid 1px #ff3f3f');
