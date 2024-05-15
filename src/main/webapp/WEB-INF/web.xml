@@ -190,6 +190,15 @@
 		<servlet-name>searchReservationFormAction</servlet-name>
 		<url-pattern>/search/Reservation</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>updateReservationFormAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.UpdateReservationFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateReservationFormAction</servlet-name>
+		<url-pattern>/updateReservationAction</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
