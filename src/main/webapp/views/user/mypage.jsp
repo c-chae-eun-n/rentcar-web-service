@@ -65,7 +65,7 @@
 							</a>
 		                </td>
 		                <td>
-							<button id="update-reservation">수정</button>
+							<button onclick="location.href='/updateReservaion'" id="update-reservation">수정</button>
 							<button id="delete-reservation">취소</button>
 		                </td>
 		            </tr>
