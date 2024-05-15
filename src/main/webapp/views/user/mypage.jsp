@@ -39,28 +39,28 @@
 				<c:forEach var="reserve" items="${reserveList }">
 		            <tr>
 		                <td>
-							<a href="/read/car?code=${car.carCode }">
+							<a href="/read/car?code=${reserve.carCode }">
 								<div>${reserve.number}</div>
 							</a>
 		                </td>
 		                <td>
-							<a href="/read/car?code=${car.carCode }">
+							<a href="/read/car?code=${reserve.carCode }">
 								<div>${reserve.renDate}</div>
 								<div>${reserve.returnDate}</div>
 							</a>
 		                </td>
 		                <td>
-							<a href="/read/car?code=${car.carCode }">
+							<a href="/read/car?code=${reserve.carCode }">
 								<div>${reserve.location}</div>
 							</a>
 		                </td>
 		                <td>
-							<a href="/read/car?code=${car.carCode }">
+							<a href="/read/car?code=${reserve.carCode }">
 								<div>${reserve.carModel}</div>
 							</a>
 		                </td>
 		                <td>
-							<a href="/read/car?code=${car.carCode }">
+							<a href="/read/car?code=${reserve.carCode }">
 								<div>${reserve.price}원</div>
 							</a>
 		                </td>
