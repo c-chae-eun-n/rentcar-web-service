@@ -335,5 +335,14 @@
 		<servlet-name>viewUserReservation</servlet-name>
 		<url-pattern>/readReservaion</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updateReservation</servlet-name>
+		<jsp-file>/views/reservate/updateReservationForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateReservation</servlet-name>
+		<url-pattern>/updateReservaion</url-pattern>
+	</servlet-mapping>
   
 </web-app>
