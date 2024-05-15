@@ -170,7 +170,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>createReservationFormAction</servlet-name>
-		<url-pattern>/createReservation</url-pattern>
+		<url-pattern>/createReservationAction</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -342,7 +342,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>viewUserReservation</servlet-name>
-		<url-pattern>/readReservaion</url-pattern>
+		<url-pattern>/viewUserReservation</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
