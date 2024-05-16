@@ -24,10 +24,10 @@
 						<span>대여 기간 </span>
 						지역 <select id="location" name="location">
 				            <option disabled value="all">지역</option>
-				            <option value="서울" ${car.location eq '서울' ? 'selected' : '' }>서울</option>
-				            <option value="경기" ${car.location eq '경기' ? 'selected' : '' }>경기</option>
-				            <option value="부산" ${car.location eq '부산' ? 'selected' : '' }>부산</option>
-				            <option value="제주" ${car.location eq '제주' ? 'selected' : '' }>제주</option>
+				            <option value="서울" ${car.location eq '서울' ? 'selected' : 'disabled' }>서울</option>
+				            <option value="경기" ${car.location eq '경기' ? 'selected' : 'disabled' }>경기</option>
+				            <option value="부산" ${car.location eq '부산' ? 'selected' : 'disabled' }>부산</option>
+				            <option value="제주" ${car.location eq '제주' ? 'selected' : 'disabled' }>제주</option>
 				        </select>
 				        <span>대여일</span><input type="date" name="renDate" id="renDate" value="${renDate }"> 
 						<select name="renTime" id="renTime">
