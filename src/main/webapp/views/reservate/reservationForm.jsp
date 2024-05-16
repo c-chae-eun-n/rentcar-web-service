@@ -13,7 +13,7 @@
 		<c:redirect url="/login" />
 	</c:if>
 	<section id="root">
-		<form method="POST" action="/createReservation" id="create-reserve">
+		<form method="POST" action="/createReservationAction" id="create-reserve">
 			<div class="reserve-container">
 				<h1>실시간 예약</h1>
 				<div id="reservation-info">
