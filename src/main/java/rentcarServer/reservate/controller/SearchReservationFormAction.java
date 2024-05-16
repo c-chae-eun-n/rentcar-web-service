@@ -62,8 +62,6 @@ public class SearchReservationFormAction extends HttpServlet {
 		object.put("carCode", carCode);
 		object.put("isValid", isValid);
 		
-		// response type 설정 (MIME-Type)
-		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json;charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
