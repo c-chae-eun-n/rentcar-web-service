@@ -196,7 +196,7 @@ public class ReservationDao {
 			conn = DBManager.getConnection();
 			
 			// 예약 불가 차량
-			String sql = "SELECT number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price FROM reservations WHERE user_id=?;";
+			String sql = "SELECT number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price FROM reservations WHERE user_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 
@@ -270,5 +270,72 @@ public class ReservationDao {
 		}
 		
 		return reserve;
+	}
+	
+	public ReservationResponseDto UpdateReservation(ReservationRequestDto reservationDto) {
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "INSERT INTO reservations(number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, reservationDto.getNumber());
+			pstmt.setString(2, reservationDto.getUserId());
+			pstmt.setString(3, reservationDto.getCarCode());
+			pstmt.setTimestamp(4, reservationDto.getRenDate());
+			pstmt.setTimestamp(5, reservationDto.getReturnDate());
+			pstmt.setString(6, reservationDto.getInsurance());
+			pstmt.setBoolean(7, reservationDto.isPaymentStatus());
+			pstmt.setString(8, reservationDto.getPayment());
+			pstmt.setString(9, reservationDto.getLocation());
+			pstmt.setString(10, reservationDto.getCarModel());
+			pstmt.setInt(11, reservationDto.getPrice());
+			
+			pstmt.execute();
+			
+			return findReserveByNumber(reservationDto.getNumber());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return null;
+	}
+
+	public ReservationResponseDto searchReservationByNumber(String reserveNumber) {
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "SELECT number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price FROM reservations WHERE number=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reserveNumber);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String number = rs.getString(1);
+				String userId = rs.getString(2);
+				String carCode = rs.getString(3);
+				Timestamp renDate = rs.getTimestamp(4);
+				Timestamp returnDate = rs.getTimestamp(5);
+				String insurance = rs.getString(6);
+				boolean paymentStatus = rs.getBoolean(7);
+				String payment = rs.getString(8);
+				String location = rs.getString(9);
+				String carModel = rs.getString(10);
+				int price = rs.getInt(11);
+				ReservationResponseDto reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
+				return reservation;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return null;
 	}
 }
