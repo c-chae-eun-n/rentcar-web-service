@@ -362,5 +362,14 @@
 		<servlet-name>updateReservation</servlet-name>
 		<url-pattern>/updateReservaion</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updateReservationCheck</servlet-name>
+		<jsp-file>/views/reservate/reservationUpdateCheckForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateReservationCheck</servlet-name>
+		<url-pattern>/reservationUpdateCheck</url-pattern>
+	</servlet-mapping>
   
 </web-app>
