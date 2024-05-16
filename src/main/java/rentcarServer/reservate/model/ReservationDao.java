@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -276,21 +278,16 @@ public class ReservationDao {
 		try {
 			conn = DBManager.getConnection();
 			
-			String sql = "INSERT INTO reservations(number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "UPDATE reservations SET ren_date=?, return_date=?, insurance=?, payment_status=?, payment=? WHERE number=?";
 		
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, reservationDto.getNumber());
-			pstmt.setString(2, reservationDto.getUserId());
-			pstmt.setString(3, reservationDto.getCarCode());
-			pstmt.setTimestamp(4, reservationDto.getRenDate());
-			pstmt.setTimestamp(5, reservationDto.getReturnDate());
-			pstmt.setString(6, reservationDto.getInsurance());
-			pstmt.setBoolean(7, reservationDto.isPaymentStatus());
-			pstmt.setString(8, reservationDto.getPayment());
-			pstmt.setString(9, reservationDto.getLocation());
-			pstmt.setString(10, reservationDto.getCarModel());
-			pstmt.setInt(11, reservationDto.getPrice());
+			pstmt.setTimestamp(1, reservationDto.getRenDate());
+			pstmt.setTimestamp(2, reservationDto.getReturnDate());
+			pstmt.setString(3, reservationDto.getInsurance());
+			pstmt.setBoolean(4, reservationDto.isPaymentStatus());
+			pstmt.setString(5, reservationDto.getPayment());
+			pstmt.setString(6, reservationDto.getNumber());
 			
 			pstmt.execute();
 			
@@ -337,5 +334,20 @@ public class ReservationDao {
 		}
 		
 		return null;
+	}
+	
+	public String convertTimeStampToString(Timestamp timestamp, String format) {
+		
+	    try
+	    {
+	        Date date = new Date();
+	        date.setTime(timestamp.getTime());
+	        return new SimpleDateFormat(format).format(date);
+	    }
+	    catch (Exception e)
+	    {
+	    	e.printStackTrace();
+	        return "";
+	    }
 	}
 }
