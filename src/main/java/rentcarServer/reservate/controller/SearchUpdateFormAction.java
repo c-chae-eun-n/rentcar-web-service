@@ -36,6 +36,9 @@ public class SearchUpdateFormAction extends HttpServlet {
 		String number = request.getParameter("number");
 		System.out.println(number);
 		
+		String button = request.getParameter("button");
+		System.out.println(button);
+		
 		ReservationDao reservationDao = ReservationDao.getInstance();
 		
 		System.out.println(number);
@@ -57,7 +60,10 @@ public class SearchUpdateFormAction extends HttpServlet {
 
 		request.setAttribute("reserve", reserve);
 
-		request.getRequestDispatcher("/updateReservaion").forward(request, response);
+		if(button.equals("수정"))
+			request.getRequestDispatcher("/updateReservaion").forward(request, response);
+		else if(button.equals("삭제"))
+			request.getRequestDispatcher("/reservationDelete").forward(request, response);
 	}
 
 	/**
