@@ -208,6 +208,15 @@
 		<servlet-name>searchUpdateFormAction</servlet-name>
 		<url-pattern>/searchUpdateAction</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>deleteReservationAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.DeleteReservationAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteReservationAction</servlet-name>
+		<url-pattern>/deleteReservationAction</url-pattern>
+	</servlet-mapping>
   
 	<!-- JSP files mapping -->
 	<servlet>
@@ -370,6 +379,24 @@
 	<servlet-mapping>
 		<servlet-name>updateReservationCheck</servlet-name>
 		<url-pattern>/reservationUpdateCheck</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>deleteReservationForm</servlet-name>
+		<jsp-file>/views/reservate/deleteReservationForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteReservationForm</servlet-name>
+		<url-pattern>/reservationDelete</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>deleteReservationCheckForm</servlet-name>
+		<jsp-file>/views/reservate/reservationDeleteCheckForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteReservationCheckForm</servlet-name>
+		<url-pattern>/reservationDeleteCheck</url-pattern>
 	</servlet-mapping>
   
 </web-app>
