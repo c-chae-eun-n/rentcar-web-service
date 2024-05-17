@@ -20,10 +20,10 @@ public class DBManager {
 		
 			conn = source.getConnection();
 			
-			System.out.println("[DB ì—°ë™ ì„±ê³µ]");
+			System.out.println("[DB ¿¬µ¿ ¼º°ø]");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("[DB ì—°ë™ ì‹¤íŒ¨]");
+			System.out.println("[DB ¿¬µ¿ ½ÇÆĞ]");
 		}
 		
 		return conn;
@@ -35,10 +35,10 @@ public class DBManager {
 			pstmt.close();
 			conn.close();
 			
-			System.out.println("[DB ì—°ê²° í•´ì œ]");
+			System.out.println("[DB ¿¬°á ÇØÁ¦]");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("[DB ì—°ê²° í•´ì œ ì‹¤íŒ¨]");
+			System.out.println("[DB ¿¬°á ÇØÁ¦ ½ÇÆĞ]");
 		}
 	}
 	
@@ -47,10 +47,10 @@ public class DBManager {
 			pstmt.close();
 			conn.close();
 			
-			System.out.println("[DB ì—°ê²° í•´ì œ]");
+			System.out.println("[DB ¿¬°á ÇØÁ¦]");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("[DB ì—°ê²° í•´ì œ ì‹¤íŒ¨]");
+			System.out.println("[DB ¿¬°á ÇØÁ¦ ½ÇÆĞ]");
 		}
 	}
 }
