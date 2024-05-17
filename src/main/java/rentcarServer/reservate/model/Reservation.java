@@ -11,9 +11,12 @@ public class Reservation {
 	private String insurance;
 	private boolean paymentStatus;
 	private String payment;
+	private String location;
+	private String carModel;
+	private int price;
 	
 	public Reservation(String number, String userId, String carCode, Timestamp renDate, Timestamp returnDate,
-			String insurance, boolean paymentStatus, String payment) {
+			String insurance, boolean paymentStatus, String payment, String location, String carModel, int price) {
 		super();
 		this.number = number;
 		this.userId = userId;
@@ -23,6 +26,9 @@ public class Reservation {
 		this.insurance = insurance;
 		this.paymentStatus = paymentStatus;
 		this.payment = payment;
+		this.location = location;
+		this.carModel = carModel;
+		this.price = price;
 	}
 
 	public String getNumber() {
@@ -87,6 +93,30 @@ public class Reservation {
 
 	public void setPayment(String payment) {
 		this.payment = payment;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getCarModel() {
+		return carModel;
+	}
+
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 }

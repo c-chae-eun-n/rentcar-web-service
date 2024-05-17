@@ -4,30 +4,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <link rel="stylesheet" href="/resources/style/form.css"> -->
 </head>
 <c:import url="/header" />
 <script src="/resources/script/validation-confirmed.js"></script>
 <body>
-	<c:if test="${empty sessionScope.user}">
-		<c:redirect url="/login" />
-	</c:if>
 	<section id="root">
-		<form method="POST" action="/createReservationAction" id="create-reserve">
+		<form method="POST" action="updateReservationAction" id="create-reserve">
 			<div class="reserve-container">
-				<h1>실시간 예약</h1>
+				<h1>예약 수정</h1>
 				<div id="reservation-info">
 					<h3>예약 내역</h3>
 					<div>
 						<span>차량/상품명 </span>
-						<span> ${car.model }</span><br>
+						<span> ${reserve.carModel }</span><br>
 						<span>대여 기간 </span>
 						지역 <select id="location" name="location">
 				            <option disabled value="all">지역</option>
-				            <option value="서울" ${car.location eq '서울' ? 'selected' : 'disabled' }>서울</option>
-				            <option value="경기" ${car.location eq '경기' ? 'selected' : 'disabled' }>경기</option>
-				            <option value="부산" ${car.location eq '부산' ? 'selected' : 'disabled' }>부산</option>
-				            <option value="제주" ${car.location eq '제주' ? 'selected' : 'disabled' }>제주</option>
+				            <option value="서울" ${reserve.location eq '서울' ? 'selected' : 'disabled' }>서울</option>
+				            <option value="경기" ${reserve.location eq '경기' ? 'selected' : 'disabled' }>경기</option>
+				            <option value="부산" ${reserve.location eq '부산' ? 'selected' : 'disabled' }>부산</option>
+				            <option value="제주" ${reserve.location eq '제주' ? 'selected' : 'disabled' }>제주</option>
 				        </select>
 				        <span>대여일</span><input type="date" name="renDate" id="renDate" value="${renDate }"> 
 						<select name="renTime" id="renTime">
@@ -69,6 +65,10 @@
 							<option value="21:00:00" ${returnTime eq '21:00:00' ? 'selected':''}>21:00</option>
 							<option value="22:00:00" ${returnTime eq '22:00:00' ? 'selected':''}>22:00</option>
 						</select>
+						<input type="hidden" value="${renDate }" id="session-renDate" name = "session-renDate">
+						<input type="hidden" value="${renTime }" id="session-renTime" name = "session-renTime">
+						<input type="hidden" value="${returnDate }" id="session-returnDate" name = "session-returnDate">
+						<input type="hidden" value="${returnTime }" id="session-returnTime" name = "session-returnTime">
 						<input type="button" value="확정" id="reservation-confirmed">
 					</div>
 				</div>
@@ -91,10 +91,10 @@
 				<div id="person-info">
 					<h3>예약자정보</h3>
 					<div>
-						<input type="hidden" id="id" name="id" value="${user.id }">
-						<input type="hidden" id="carCode" name="carCode" value="${car.carCode }">
-						<input type="hidden" id="location" name="location" value="${car.location }">
-						<input type="hidden" id="carModel" name="carModel" value="${car.model }">
+						<input type="hidden" id="number" name="number" value="${reserve.number }">
+						<input type="hidden" id="id" name="id" value="${reserve.userId }">
+						<input type="hidden" id="carCode" name="carCode" value="${reserve.carCode }">
+						<input type="hidden" id="carModel" name="carModel" value="${reserve.carModel }">
 						예약자명<input type="text" id="name" name="name" value= "${user.name}">
 						이메일<input type="text" id="email" name="email" placeholder="[선택] 이메일주소 (예약 정보 전송 및 본인 확인용)" value= "${not empty user.email ? user.email : ''}">
 					</div>
@@ -232,19 +232,19 @@
 			<div id="reserve-price">
 				<h3>최종 결제 금액</h3>
 				<div>
-					<input type="hidden" id="price" name="price" value="${car.price }">
-					<span> ${car.price }원</span><br>
+					<input type="hidden" id="price" name="price" value="${reserve.price }">
+					<span> ${reserve.price }원</span><br>
 				</div>
 			</div>
 			<div id="reserve-payment">
 				<h3>결제 수단</h3>
 				<div>
-					<input type="radio" id="payment-card" name="payment" value="신용카드"> 신용카드
-					<input type="radio" id="payment-cash" name="payment" value="무통장입금"> 무통장입금
+					<input type="radio" id="payment-card" name="payment" value="신용카드" ${reserve.payment eq '신용카드' ? 'checked' : ''}> 신용카드
+					<input type="radio" id="payment-cash" name="payment" value="무통장입금" ${reserve.payment eq '무통장입금' ? 'checked' : ''}> 무통장입금
 				</div>
 			</div>
 			
-			<input type="submit" value="예약하기">
+			<input type="submit" value="수정하기">
 		</form>
 	</section>
 </body>

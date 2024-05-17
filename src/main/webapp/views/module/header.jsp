@@ -19,7 +19,7 @@
 			<ul>
 				<li><a href="/readAllCarFormAction"><span>렌트카</span></a></li>
 				<li><a href="/readAllFormAction"><span>게시판</span></a></li>
-				<li><a href="/mypage"><span>마이페이지</span></a></li>
+				<li><a href="/readReservationAction"><span>마이페이지</span></a></li>
 			</ul>
 		</nav>
 		<nav id="nav-sub">

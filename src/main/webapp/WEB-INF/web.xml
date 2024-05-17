@@ -170,7 +170,52 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>createReservationFormAction</servlet-name>
-		<url-pattern>/createReservation</url-pattern>
+		<url-pattern>/createReservationAction</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readReservationFormAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.ReadReservationFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readReservationFormAction</servlet-name>
+		<url-pattern>/readReservationAction</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>searchReservationFormAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.SearchReservationFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchReservationFormAction</servlet-name>
+		<url-pattern>/search/Reservation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>updateReservationFormAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.UpdateReservationFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateReservationFormAction</servlet-name>
+		<url-pattern>/updateReservationAction</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>searchUpdateFormAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.SearchUpdateFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchUpdateFormAction</servlet-name>
+		<url-pattern>/searchUpdateAction</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>deleteReservationAction</servlet-name>
+		<servlet-class>rentcarServer.reservate.controller.DeleteReservationAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteReservationAction</servlet-name>
+		<url-pattern>/deleteReservationAction</url-pattern>
 	</servlet-mapping>
   
 	<!-- JSP files mapping -->
@@ -307,6 +352,51 @@
 	<servlet-mapping>
 		<servlet-name>reservationCheck</servlet-name>
 		<url-pattern>/reservationCheck</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>viewUserReservation</servlet-name>
+		<jsp-file>/views/reservate/viewUserReservationForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viewUserReservation</servlet-name>
+		<url-pattern>/viewUserReservation</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updateReservation</servlet-name>
+		<jsp-file>/views/reservate/updateReservationForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateReservation</servlet-name>
+		<url-pattern>/updateReservaion</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updateReservationCheck</servlet-name>
+		<jsp-file>/views/reservate/reservationUpdateCheckForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateReservationCheck</servlet-name>
+		<url-pattern>/reservationUpdateCheck</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>deleteReservationForm</servlet-name>
+		<jsp-file>/views/reservate/deleteReservationForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteReservationForm</servlet-name>
+		<url-pattern>/reservationDelete</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>deleteReservationCheckForm</servlet-name>
+		<jsp-file>/views/reservate/reservationDeleteCheckForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteReservationCheckForm</servlet-name>
+		<url-pattern>/reservationDeleteCheck</url-pattern>
 	</servlet-mapping>
   
 </web-app>

@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -59,7 +61,10 @@ public class ReservationDao {
 				String insurance = rs.getString(6);
 				boolean paymentStatus = rs.getBoolean(7);
 				String payment = rs.getString(8);
-				ReservationResponseDto reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment);
+				String location = rs.getString(9);
+				int price = rs.getInt(10);
+				String carModel = rs.getString(11);
+				ReservationResponseDto reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
 				reservationList.add(reservation);
 			}
 		} catch (Exception e) {
@@ -74,7 +79,7 @@ public class ReservationDao {
 		try {
 			conn = DBManager.getConnection();
 			
-			String sql = "INSERT INTO reservations(number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO reservations(number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 			pstmt = conn.prepareStatement(sql);
 			
@@ -86,6 +91,9 @@ public class ReservationDao {
 			pstmt.setString(6, reservationDto.getInsurance());
 			pstmt.setBoolean(7, reservationDto.isPaymentStatus());
 			pstmt.setString(8, reservationDto.getPayment());
+			pstmt.setString(9, reservationDto.getLocation());
+			pstmt.setString(10, reservationDto.getCarModel());
+			pstmt.setInt(11, reservationDto.getPrice());
 			
 			pstmt.execute();
 			
@@ -120,8 +128,11 @@ public class ReservationDao {
 				String insurance = rs.getString(6);
 				boolean paymentStatus = rs.getBoolean(7);
 				String payment = rs.getString(8);
+				String location = rs.getString(9);
+				int price = rs.getInt(10);
+				String carModel = rs.getString(11);
 				
-				reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment);
+				reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
 				return reservation;
 			}
 		} catch (Exception e) {
@@ -164,9 +175,9 @@ public class ReservationDao {
 		String number = "";
 		while(true) {
 			LocalDate now = LocalDate.now();         
-			// 포맷 정의        
+			// 포맷 정의       
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");         
-			// 포맷 적용        
+			// 포맷 적용       
 			String formatedNow = now.format(formatter);
 			Random random = new Random();
 			
@@ -178,5 +189,186 @@ public class ReservationDao {
 		}
 		
 		return number;
+	}
+	
+	public List<ReservationResponseDto> readReservationList(String id) {
+		List<ReservationResponseDto> reservationList = new ArrayList<ReservationResponseDto>();
+
+		try {
+			conn = DBManager.getConnection();
+			
+			// 예약 불가 차량
+			String sql = "SELECT number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price FROM reservations WHERE user_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String number = rs.getString(1);
+				String userId = rs.getString(2);
+				String carCode = rs.getString(3);
+				Timestamp renDate = rs.getTimestamp(4);
+				Timestamp returnDate = rs.getTimestamp(5);
+				String insurance = rs.getString(6);
+				boolean paymentStatus = rs.getBoolean(7);
+				String payment = rs.getString(8);
+				String location = rs.getString(9);
+				String carModel = rs.getString(10);
+				int price = rs.getInt(11);
+				ReservationResponseDto reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
+				reservationList.add(reservation);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return reservationList;
+	}
+	
+	public boolean reserveExists(String carCode, Timestamp renDateTime, Timestamp returnDateTime) {
+		return findReserveByCarcode(carCode, renDateTime, returnDateTime) != null;
+	}
+	
+	private Reservation findReserveByCarcode(String carCode, Timestamp renDateTime, Timestamp returnDateTime) {
+		Reservation reserve = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "SELECT * FROM reservations WHERE car_code=? AND ((ren_date<=? AND return_date>=?) OR (ren_date BETWEEN ? AND ?) OR (return_date BETWEEN ? AND ?))";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, carCode);
+			pstmt.setTimestamp(2, renDateTime);
+			pstmt.setTimestamp(3, returnDateTime);
+			pstmt.setTimestamp(4, renDateTime);
+			pstmt.setTimestamp(5, returnDateTime);
+			pstmt.setTimestamp(6, renDateTime);
+			pstmt.setTimestamp(7, returnDateTime);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String number = rs.getString(1);
+				String id = rs.getString(2);
+				String code = rs.getString(3);
+				Timestamp renDate = rs.getTimestamp(4);
+				Timestamp returnDate = rs.getTimestamp(5);
+				String insurance = rs.getString(6);
+				boolean paymentStatus = rs.getBoolean(7);
+				String payment = rs.getString(8);
+				String location = rs.getString(9);
+				int price = rs.getInt(10);
+				String carModel = rs.getString(11);
+				
+				reserve = new Reservation(number, id, code, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return reserve;
+	}
+	
+	public ReservationResponseDto UpdateReservation(ReservationRequestDto reservationDto) {
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "UPDATE reservations SET ren_date=?, return_date=?, insurance=?, payment_status=?, payment=? WHERE number=?";
+		
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setTimestamp(1, reservationDto.getRenDate());
+			pstmt.setTimestamp(2, reservationDto.getReturnDate());
+			pstmt.setString(3, reservationDto.getInsurance());
+			pstmt.setBoolean(4, reservationDto.isPaymentStatus());
+			pstmt.setString(5, reservationDto.getPayment());
+			pstmt.setString(6, reservationDto.getNumber());
+			
+			pstmt.execute();
+			
+			return findReserveByNumber(reservationDto.getNumber());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return null;
+	}
+
+	public ReservationResponseDto searchReservationByNumber(String reserveNumber) {
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "SELECT number, user_id, car_code, ren_date, return_date, insurance, payment_status, payment, location, car_model, price FROM reservations WHERE number=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reserveNumber);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String number = rs.getString(1);
+				String userId = rs.getString(2);
+				String carCode = rs.getString(3);
+				Timestamp renDate = rs.getTimestamp(4);
+				Timestamp returnDate = rs.getTimestamp(5);
+				String insurance = rs.getString(6);
+				boolean paymentStatus = rs.getBoolean(7);
+				String payment = rs.getString(8);
+				String location = rs.getString(9);
+				String carModel = rs.getString(10);
+				int price = rs.getInt(11);
+				ReservationResponseDto reservation = new ReservationResponseDto(number, userId, carCode, renDate, returnDate, insurance, paymentStatus, payment, location, carModel, price);
+				return reservation;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return null;
+	}
+	
+	public String convertTimeStampToString(Timestamp timestamp, String format) {
+		
+	    try
+	    {
+	        Date date = new Date();
+	        date.setTime(timestamp.getTime());
+	        return new SimpleDateFormat(format).format(date);
+	    }
+	    catch (Exception e)
+	    {
+	    	e.printStackTrace();
+	        return "";
+	    }
+	}
+	
+	public boolean deleteReservationByNumber(String reservationNumber) {
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "DELETE FROM reservations WHERE number=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reservationNumber);
+
+			pstmt.execute();
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return false;
 	}
 }

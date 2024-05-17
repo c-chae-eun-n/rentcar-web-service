@@ -7,24 +7,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import rentcarServer.car.model.CarDao;
 import rentcarServer.reservate.model.ReservationDao;
 import rentcarServer.reservate.model.ReservationRequestDto;
 import rentcarServer.reservate.model.ReservationResponseDto;
 
-
 /**
- * Servlet implementation class CreateReservationFormAction
+ * Servlet implementation class UpdateReservationFormAction
  */
-public class CreateReservationFormAction extends HttpServlet {
+public class UpdateReservationFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateReservationFormAction() {
+    public UpdateReservationFormAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,7 +54,8 @@ public class CreateReservationFormAction extends HttpServlet {
 		String returntemp = returnDate + " " + returnTime;
 		System.out.println("resevtemp: "+rentemp);
 		System.out.println("returntemp: "+returntemp);
-		
+
+		String number = request.getParameter("number");
 		String userId = request.getParameter("id");
 		String carCode = request.getParameter("carCode");
 		System.out.println("userId: "+userId);
@@ -95,20 +93,17 @@ public class CreateReservationFormAction extends HttpServlet {
 		if(isValid) {
 			ReservationDao reservationDao = ReservationDao.getInstance();
 			
-			String number = reservationDao.createNumber();
 			ReservationRequestDto reservationDto = new ReservationRequestDto(number, userId, carCode, resevDateTime, returnDateTime, insurance, paymentStatus, payment, location, carModel, price);
 
-			ReservationResponseDto reservation = reservationDao.createReservation(reservationDto);
-			CarDao carDao = CarDao.getInstance();
-			carDao.changeCarReservation(carCode);
+			ReservationResponseDto reservation = reservationDao.UpdateReservation(reservationDto);
 
 			if (reservation == null) {
-				request.setAttribute("isReservated", false);
+				request.setAttribute("isUpdate", false);
 			} else {
-				request.setAttribute("isReservated", true);
+				request.setAttribute("isUpdate", true);
 			}
 			
-			request.getRequestDispatcher("/reservationCheck").forward(request,response);
+			request.getRequestDispatcher("/reservationUpdateCheck").forward(request,response);
 		}
 	}
 

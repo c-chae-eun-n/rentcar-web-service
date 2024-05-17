@@ -1,32 +1,54 @@
 $(document).ready(() => {
-	$('#id').focusout(e => {
-		if($('#id').val() === ""){
-			$('#error-msg-id').show();
-			$('#id').css('border', 'solid 1px #ff3f3f');
-		} else {
-			$('#error-msg-id').hide();
-			$('#id').css('border', 'solid 1px lightgrey');
-		}
-	});
+	
+	let isValid = false;
+	let isConfirm = false;
+    console.log('isValid : '+isValid);
+    console.log('isConfirm : '+isConfirm);
+	
+	$('#reservation-confirmed').on('click', e => { 
+		e.preventDefault();
+	    console.log('e.target : '+e.target);
 		
-	$('#password').focusout(e => {
-		if($('#password').val() === ""){
-			$('#error-msg-password').show();
-			$('#password').css('border', 'solid 1px #ff3f3f');
-		} else {
-			$('#error-msg-password').hide();
-			$('#password').css('border', 'solid 1px lightgrey');
+		const location = $('#location').val();
+		const renDate = $('#renDate').val();
+		const renTime = $('#renTime').val();
+		const returnDate = $('#returnDate').val();
+		const returnTime = $('#returnTime').val();
 		
-			const password = $('#password').val();
-			
-			
-			if(password.match(/(?=.*[a-z])(?=.*[!@#$%])[a-z0-9!@#$%]{8,12}/) === null || password.match(/(?=.*[a-z])(?=.*[!@#$%])[a-z0-9!@#$%]{8,12}/)[0] !== password) {
-				$('#error-msg-password-pattern').show();
-				$('#password').css('border', 'solid 1px #ff3f3f');
-			}else {
-				$('#error-msg-password-pattern').hide();
-			}
+		const carCode = $('#carCode').val();
+		
+	    console.log(location);
+	    console.log(renDate);
+	    console.log(renTime);
+	    console.log(returnDate);
+	    console.log(returnTime);
+		
+		if(location === "" || renDate === "" || returnDate === "" || renTime === null || returnTime === null) {
+			alert("대여 기간을 설정해주세요.");
+			isValid = false;
+			isConfirm = false;
+		} else {
+			isValid = true;
+			isConfirm = true;
 		}
+		
+		if(isValid) {
+			console.log('ajax');
+			$.ajax({
+				"method": "POST",
+				"url": `/search/Reservation?carCode=${carCode}&renDate=${renDate}&renTime=${renTime}&returnDate=${returnDate}&returnTime=${returnTime}`
+			}).done(response => {
+				if(response.isValid) {
+					alert("대여 할 수 없는 기간입니다.");
+					isConfirm = false;
+					isValid = false;
+				} else {
+					isValid = true;
+					alert("대여 기간이 확정되었습니다.");
+				}
+			})
+		}
+	
 	});
 	
 	$('#email').focusout(e => {
@@ -106,12 +128,10 @@ $(document).ready(() => {
 		}
 	});
 	
-	$('form').submit(e => {
+	$('#create-reserve').on("submit", e => {
 		e.preventDefault();
 		
-		const id = $('#id').val();
-		const password = $('#password').val();
-		
+		const insurance = e.target.insurance.value;
 		const name = $('#name').val();
 		const birth = $('#birth').val();
 		const telecom = $('#telecom').val();
@@ -124,54 +144,80 @@ $(document).ready(() => {
 		// 유효성 검사
 		let isValid = true;
 		
-		if(id === "") {
+		if(insurance === ""){
 			isValid = false;
-			$('#error-msg-id').show();
-			$('#id').css('border', 'solid 1px #ff3f3f');
+			$('#error-msg-insurance').show();
+			$('#insurance').css('border', 'solid 1px #ff3f3f');
+		} else {
+			$('#error-msg-insurance').hide();
+			$('#insurance').css('border', 'solid 1px lightgrey');
 		}
-		if(password === ""){
-			isValid = false;
-			$('#error-msg-password').show();
-			$('#password').css('border', 'solid 1px #ff3f3f');
-		}
+		
 		if(name === ""){
 			isValid = false;
 			$('#error-msg-name').show();
 			$('#name').css('border', 'solid 1px #ff3f3f');
+		} else {
+			$('#error-msg-name').hide();
+			$('#name').css('border', 'solid 1px lightgrey');
 		}
+		
 		if(birth === ""){
 			isValid = false;
 			$('#error-msg-birth').show();
 			$('#birth').css('border', 'solid 1px #ff3f3f');
+		} else {
+			$('#error-msg-birth').hide();
+			$('#birth').css('border', 'solid 1px lightgrey');
 		}
+		
 		if(telecom === null){
 			isValid = false;
 			$('#error-msg-telecom').show();
 			$('#telecom').css('border', 'solid 1px #ff3f3f');
+		} else {
+			$('#error-msg-telecom').hide();
+			$('#telecom').css('border', 'solid 1px lightgrey');
 		}
+		
 		if(gender === ""){
 			isValid = false;
 			$('#error-msg-gender').show();
 			$('#radio-container').css('border', 'solid 1px #ff3f3f');
 			$('#gender-man-label').css('border', 'solid 1px #ff3f3f');
 			$('#gender-woman-label').css('border', 'solid 1px #ff3f3f');
+		} else {
+			$('#error-msg-gender').hide();
+			$('#gender').css('border', 'solid 1px lightgrey');
 		}
+		
 		if(country === ""){
 			isValid = false;
 			$('#error-msg-country').show();
 			$('#radio-container').css('border', 'solid 1px #ff3f3f');
 			$('#country-local-label').css('border', 'solid 1px #ff3f3f');
 			$('#country-foreigner-label').css('border', 'solid 1px #ff3f3f');
+		} else {
+			$('#error-msg-country').hide();
+			$('#country').css('border', 'solid 1px lightgrey');
 		}
+		
 		if(phone === ""){
 			isValid = false;
 			$('#error-msg-phone').show();
 			$('#phone').css('border', 'solid 1px #ff3f3f');
+		} else {
+			$('#error-msg-phone').hide();
+			$('#phone').css('border', 'solid 1px lightgrey');
 		}
 		
-		if(isValid) {
+		
+		if(!isConfirm) {
+			alert("대여기간 확정을 눌러주세요.");
+		} else if(isConfirm && isValid) {
+			console.log('submit');
 			e.target.submit();
 		}
-		
-	});
+	})
+	
 });
