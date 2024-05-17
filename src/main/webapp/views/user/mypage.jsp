@@ -65,8 +65,8 @@
 							</a>
 		                </td>
 		                <td>
-							<button onclick="location.href='/searchUpdateAction?number=${reserve.number}';" id="update-reservation">수정</button>
-							<button id="delete-reservation">취소</button>
+							<button onclick="location.href='/searchUpdateAction?number=${reserve.number}&button=수정'" id="update-reservation">수정</button>
+							<button onclick="location.href='/searchUpdateAction?number=${reserve.number}&button=삭제'" id="delete-reservation">취소</button>
 		                </td>
 		            </tr>
 				</c:forEach>
