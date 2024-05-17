@@ -175,9 +175,9 @@ public class ReservationDao {
 		String number = "";
 		while(true) {
 			LocalDate now = LocalDate.now();         
-			// 포맷 정의        
+			// 포맷 정의       
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");         
-			// 포맷 적용        
+			// 포맷 적용       
 			String formatedNow = now.format(formatter);
 			Random random = new Random();
 			
@@ -349,5 +349,26 @@ public class ReservationDao {
 	    	e.printStackTrace();
 	        return "";
 	    }
+	}
+	
+	public boolean deleteReservationByNumber(String reservationNumber) {
+		try {
+			conn = DBManager.getConnection();
+			
+			String sql = "DELETE FROM reservations WHERE number=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reservationNumber);
+
+			pstmt.execute();
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return false;
 	}
 }
